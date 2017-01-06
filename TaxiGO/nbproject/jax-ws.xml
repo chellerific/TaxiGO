@@ -2,10 +2,10 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
-    <client name="DatabaseService">
-      <wsdl-url>http://localhost:8080/TaxiGOServer/DatabaseService?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8080/TaxiGOServer/DatabaseService.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">taxi</package-name>
+    <client name="Database">
+      <wsdl-url>http://localhost:8080/TaxiGOServerNew/Database?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/TaxiGOServerNew/Database.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">service</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -22,7 +22,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/TaxiGOServer/DatabaseService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/TaxiGOServerNew/Database?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -34,7 +34,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>taxi</wsimport-option-value>
+          <wsimport-option-value>service</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

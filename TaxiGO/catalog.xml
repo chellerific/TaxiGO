@@ -2,4 +2,8 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:8080/TaxiGOServer/DatabaseService?wsdl" uri="src/conf/xml-resources/web-service-references/DatabaseService/wsdl/localhost_8080/TaxiGOServer/DatabaseService.wsdl"/>
     <system systemId="http://localhost:8080/TaxiGOServer/DatabaseService?xsd=1" uri="src/conf/xml-resources/web-service-references/DatabaseService/wsdl/localhost_8080/TaxiGOServer/DatabaseService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/TaxiGOServerNew/MyWebService?wsdl" uri="src/conf/xml-resources/web-service-references/MyWebService/wsdl/localhost_8080/TaxiGOServerNew/MyWebService.wsdl"/>
+    <system systemId="http://localhost:8080/TaxiGOServerNew/MyWebService?xsd=1" uri="src/conf/xml-resources/web-service-references/MyWebService/wsdl/localhost_8080/TaxiGOServerNew/MyWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/TaxiGOServerNew/Database?wsdl" uri="src/conf/xml-resources/web-service-references/Database/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl"/>
+    <system systemId="http://localhost:8080/TaxiGOServerNew/Database?xsd=1" uri="src/conf/xml-resources/web-service-references/Database/wsdl/localhost_8080/TaxiGOServerNew/Database.xsd_1.xsd"/>
 </catalog>

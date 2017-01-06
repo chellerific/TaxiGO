@@ -26,21 +26,21 @@
             <isset property="conf.dir"/>
         </condition>
     </target>
-    <target name="wsimport-client-DatabaseService" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/DatabaseService"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/DatabaseService" destdir="${build.generated.dir}/jax-wsCache/DatabaseService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/DatabaseService/wsdl/localhost_8080/TaxiGOServer/DatabaseService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/TaxiGOServer/DatabaseService?wsdl" xnocompile="true" xendorsed="true" package="taxi">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/DatabaseService/wsdl/localhost_8080/TaxiGOServer/DatabaseService.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/DatabaseService"/>
+    <target name="wsimport-client-Database" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/Database"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Database" destdir="${build.generated.dir}/jax-wsCache/Database" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Database/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/TaxiGOServerNew/Database?wsdl" xnocompile="true" xendorsed="true" package="service">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/Database/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/Database"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/DatabaseService">
+            <fileset dir="${build.generated.dir}/jax-wsCache/Database">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-DatabaseService" depends="-init-project">
-        <delete dir="${build.generated.sources.dir}/jax-ws/taxi"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/DatabaseService"/>
+    <target name="wsimport-client-clean-Database" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/service"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/Database"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-DatabaseService"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-Database"/>
 </project>

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.3 (tags/2.3-7528; 2013-04-29T19:34:10+0000) JAXWS-RI/2.2.8 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://service/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service/">
+
+<xs:element name="getadmininfo" type="tns:getadmininfo"/>
+
+<xs:element name="getadmininfoResponse" type="tns:getadmininfoResponse"/>
+
+<xs:element name="getbookings" type="tns:getbookings"/>
+
+<xs:element name="getbookingsResponse" type="tns:getbookingsResponse"/>
+
+<xs:element name="getpriceinfo" type="tns:getpriceinfo"/>
+
+<xs:element name="getpriceinfoResponse" type="tns:getpriceinfoResponse"/>
+
+<xs:complexType name="getbookings">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getbookingsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:bookings" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="bookings">
+<xs:sequence>
+<xs:element name="bookingid" type="xs:int" minOccurs="0"/>
+<xs:element name="companyname" type="xs:string" minOccurs="0"/>
+<xs:element name="customer" type="xs:string" minOccurs="0"/>
+<xs:element name="destination" type="xs:string" minOccurs="0"/>
+<xs:element name="origin" type="xs:string" minOccurs="0"/>
+<xs:element name="price" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getadmininfo">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getadmininfoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:admininfo" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="admininfo">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="phone" type="xs:string" minOccurs="0"/>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getpriceinfo">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getpriceinfoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:taxioperator" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="taxioperator">
+<xs:sequence>
+<xs:element name="baserate" type="xs:double"/>
+<xs:element name="operator" type="xs:string" minOccurs="0"/>
+<xs:element name="priceperkm" type="xs:double"/>
+<xs:element name="rating" type="xs:int"/>
+<xs:element name="weekendfee" type="xs:double" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
