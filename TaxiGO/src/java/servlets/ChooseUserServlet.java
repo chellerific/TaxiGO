@@ -61,10 +61,10 @@ public class ChooseUserServlet extends HttpServlet {
 
         } else if (clickBtn.equals("Customer")) {
 
-        } else if (clickBtn.equals("Taxi Operator")) {
-
+        } else if (clickBtn.equals("TaxiOperator")) {
+            request.getRequestDispatcher("start.jsp").forward(request, response);
         } else if (clickBtn.equals("Administrator")) {
-
+            request.getRequestDispatcher("adminmain.jsp").forward(request, response);
         }
 
     }

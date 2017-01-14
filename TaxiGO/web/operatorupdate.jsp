@@ -9,16 +9,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Update</title>
     </head>
     <body>
         <b>You can update the prices below</b>
         <form method="POST" action="OperatorServlet">
-            Base fare:<br>
+            Base fare:
             <input type="number" name="number1"><br>
-            Price per km: <br>
+            Price per km: 
             <input type="number" name="number2"><br>
-            Weekend fee: <br>
+            Weekend fee: 
             <input type="number" name="number3"><br>
             <input type="submit" value="Update" name="function" />
         </form>

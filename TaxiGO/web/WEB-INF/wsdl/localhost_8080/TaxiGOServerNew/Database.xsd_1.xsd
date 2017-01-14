@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.3 (tags/2.3-7528; 2013-04-29T19:34:10+0000) JAXWS-RI/2.2.8 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://service/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service/">
 
+<xs:element name="addoperator" type="tns:addoperator"/>
+
+<xs:element name="addoperatorResponse" type="tns:addoperatorResponse"/>
+
+<xs:element name="addoperatorlogin" type="tns:addoperatorlogin"/>
+
+<xs:element name="addoperatorloginResponse" type="tns:addoperatorloginResponse"/>
+
 <xs:element name="getadmininfo" type="tns:getadmininfo"/>
 
 <xs:element name="getadmininfoResponse" type="tns:getadmininfoResponse"/>
@@ -11,6 +19,10 @@
 <xs:element name="getpriceinfo" type="tns:getpriceinfo"/>
 
 <xs:element name="getpriceinfoResponse" type="tns:getpriceinfoResponse"/>
+
+<xs:element name="updatePrice" type="tns:updatePrice"/>
+
+<xs:element name="updatePriceResponse" type="tns:updatePriceResponse"/>
 
 <xs:complexType name="getbookings">
 <xs:sequence/>
@@ -30,6 +42,52 @@
 <xs:element name="destination" type="xs:string" minOccurs="0"/>
 <xs:element name="origin" type="xs:string" minOccurs="0"/>
 <xs:element name="price" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addoperatorlogin">
+<xs:sequence>
+<xs:element name="operator" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="phone" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addoperatorloginResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addoperator">
+<xs:sequence>
+<xs:element name="operator" type="xs:string" minOccurs="0"/>
+<xs:element name="baserate" type="xs:double"/>
+<xs:element name="priceperkm" type="xs:double"/>
+<xs:element name="weekendfee" type="xs:double"/>
+<xs:element name="rating" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addoperatorResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updatePrice">
+<xs:sequence>
+<xs:element name="company" type="xs:string" minOccurs="0"/>
+<xs:element name="baserate" type="xs:double"/>
+<xs:element name="priceperkm" type="xs:double"/>
+<xs:element name="weekendfee" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updatePriceResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

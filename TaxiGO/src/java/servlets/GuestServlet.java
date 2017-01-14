@@ -36,7 +36,7 @@ public class GuestServlet extends HttpServlet {
 
         if (clickBtn.equals("Book a Travel")) {
 
-            request.getRequestDispatcher("results.jsp").forward(request, response);
+            request.getRequestDispatcher("travelresults.jsp").forward(request, response);
         }
     }
 
