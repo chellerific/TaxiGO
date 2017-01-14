@@ -18,12 +18,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Results", urlPatterns = {"/Results"})
 
-public class ResultsServlet extends HttpServlet {
+public class Results extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
     }
 
     /**
@@ -38,10 +37,13 @@ public class ResultsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+//        String guestBtn = request.getParameter("guest");
+//        String customerBtn = request.getParameter("customer");
+//        String taxiBtn = request.getParameter("taxiOperator");
+//        String adminBtn = request.getParameter("admin");
         String clickBtn = request.getParameter("click");
-
         if (clickBtn.equals("Confirm your Booking")) {
-            request.getRequestDispatcher("results.jsp").forward(request, response);
+            request.getRequestDispatcher("confirmtaxi.jsp").forward(request, response);
 
         }
 

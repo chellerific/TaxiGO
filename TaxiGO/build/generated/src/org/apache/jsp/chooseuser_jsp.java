@@ -56,7 +56,7 @@ public final class chooseuser_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <form action=\"ChooseUser\" method=\"POST\">\n");
       out.write("            <input type='submit' name=\"click\" value=\"Guest\" />\n");
       out.write("            <input type='submit' name=\"click\" value=\"Customer\" />\n");
-      out.write("            <input type='submit' name=\"click\" value=\"Taxi Operator\" />\n");
+      out.write("            <input type='submit' name=\"click\" value=\"TaxiOperator\" />\n");
       out.write("            <input type='submit' name=\"click\" value=\"Administrator\" />\n");
       out.write("        </form>\n");
       out.write("    </body>\n");

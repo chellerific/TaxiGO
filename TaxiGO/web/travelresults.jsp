@@ -1,7 +1,7 @@
 <%-- 
     Document   : results
     Created on : Jan 14, 2017, 5:59:12 PM
-    Author     : student
+    Author     : Chelsi
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -52,7 +52,9 @@
         Origin: <input id="orig" type="text" style="width:35em"><br><br>
         Destination: <input id="dest" type="text" style="width:35em"><br><br>
         Distance : <input id="dist" type="text" style="width:35em">
-        <input type='submit' name="click" value="Confirm your Booking" /> 
+        <form method="POST" action="ConfirmTaxi"> 
+            <input type="submit" name="click" value="Confirm your Booking" /> 
+        </form>
 
     </body>
 </html>
