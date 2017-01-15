@@ -4,6 +4,8 @@
     Author     : Sara
 --%>
 
+<%@page import="service.Clientinfo"%>
+<%@page import="service.Taxiinfo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,10 +16,64 @@
     <body>
         <b>Here are lists of users:</b><br><br>
         <b>The users:</b><br>
-        //TODO TABLE <br><br>
+        <table border="2">
+            <tr>
+                <td>Username</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Reported</td>
+            </tr>
+            <%
+                Clientinfo client = (Clientinfo)request.getAttribute("client0");
+                int index = 0;
+                
+                if (client != null) {
+                    while (client != null) {
+                    index = index + 1;
+                    
+            %>
+            <tr>
+            <td><%=client.getUsername() %></td>
+            <td><%=client.getEmail() %></td>
+            <td><%=client.getPhone() %></td>
+            <td><%=client.isReported() %></td>
+            </tr>
+            <%
+                
+                    client = (Clientinfo)request.getAttribute("client" + index);
+                }
+            }
+            %>
+        </table> <br><br>
 
         <b>The taxi operators:</b><br>
-        //TODO TABLE <br>
+        <table border="2">
+            <tr>
+                <td>Username</td>
+                <td>E-mail</td>
+                <td>Phone</td>
+            </tr>
+            <%
+                Taxiinfo taxi = (Taxiinfo)request.getAttribute("taxi0");
+                int i = 0;
+                
+                if (taxi != null) {
+                    while (taxi != null) {
+                    i = i + 1;
+                    
+            %>
+            <tr>
+            <td><%=taxi.getUsername()%></td>
+            <td><%=taxi.getEmail() %></td>
+            <td><%=taxi.getPhone()%></td>
+            </tr>
+            <%
+                
+                    taxi = (Taxiinfo)request.getAttribute("taxi" + i);
+                }
+            }
+            %>
+        </table><br>
         <form method="POST" action=adminaddoperator.jsp> 
             <input type="submit" value="Add operator" name="function" />
         </form><br>

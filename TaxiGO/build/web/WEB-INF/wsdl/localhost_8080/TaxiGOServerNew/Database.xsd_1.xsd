@@ -8,6 +8,10 @@
 
 <xs:element name="addoperatorloginResponse" type="tns:addoperatorloginResponse"/>
 
+<xs:element name="getOperators" type="tns:getOperators"/>
+
+<xs:element name="getOperatorsResponse" type="tns:getOperatorsResponse"/>
+
 <xs:element name="getadmininfo" type="tns:getadmininfo"/>
 
 <xs:element name="getadmininfoResponse" type="tns:getadmininfoResponse"/>
@@ -15,6 +19,10 @@
 <xs:element name="getbookings" type="tns:getbookings"/>
 
 <xs:element name="getbookingsResponse" type="tns:getbookingsResponse"/>
+
+<xs:element name="getclients" type="tns:getclients"/>
+
+<xs:element name="getclientsResponse" type="tns:getclientsResponse"/>
 
 <xs:element name="getpriceinfo" type="tns:getpriceinfo"/>
 
@@ -91,6 +99,25 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getOperators">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getOperatorsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:taxiinfo" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="taxiinfo">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="phone" type="xs:string" minOccurs="0"/>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="getadmininfo">
 <xs:sequence/>
 </xs:complexType>
@@ -106,6 +133,26 @@
 <xs:element name="email" type="xs:string" minOccurs="0"/>
 <xs:element name="password" type="xs:string" minOccurs="0"/>
 <xs:element name="phone" type="xs:string" minOccurs="0"/>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getclients">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getclientsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:clientinfo" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="clientinfo">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="phone" type="xs:string" minOccurs="0"/>
+<xs:element name="reported" type="xs:boolean"/>
 <xs:element name="username" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
