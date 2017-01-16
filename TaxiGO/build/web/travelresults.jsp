@@ -46,13 +46,13 @@
 
     </script>
     <body>
-        <h1>Travel Results</h1>
-        <br>
-        <br><br>
-        Origin: <input id="orig" type="text" style="width:35em"><br><br>
-        Destination: <input id="dest" type="text" style="width:35em"><br><br>
-        Distance : <input id="dist" type="text" style="width:35em">
         <form method="POST" action="ConfirmTaxi"> 
+            <h1>Travel Results</h1>
+            <br>
+            <br><br>
+            Origin: <input id="orig" type="text" style="width:35em"><br><br>
+            Destination: <input id="dest" type="text" style="width:35em"><br><br>
+            Distance : <input id="dist" type="text" style="width:35em">
             <input type="submit" name="click" value="Confirm your Booking" /> 
         </form>
 

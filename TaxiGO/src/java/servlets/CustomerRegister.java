@@ -6,25 +6,20 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
-import service.Bookings;
 import service.Database_Service;
-import service.Taxioperator;
 
 /**
  *
  * @author Chelsi
  */
-@WebServlet(name = "ConfirmTaxi", urlPatterns = {"/ConfirmTaxi"})
-public class ConfirmTaxi extends HttpServlet {
+@WebServlet(name = "CustomerRegister", urlPatterns = {"/CustomerRegister"})
+public class CustomerRegister extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl")
     private Database_Service service;
@@ -40,30 +35,21 @@ public class ConfirmTaxi extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/confirmtaxi.jsp");
+        String username = request.getParameter("uname");
+        String password = request.getParameter("pass");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
 
-        List<Taxioperator> prices = getpriceinfo();
-        int size = prices.size();
-        for (int i = 0; i < size; i++) {
-            request.setAttribute("price" + i, prices.get(i));
+        String clickBtn = request.getParameter("click");
+
+        if (clickBtn.equals("Register")) {
+            String result = addCustomer(username, password, email, phone, false);
+            System.out.println("Adding customer: " + result);
+            request.getRequestDispatcher("confirmregister.jsp").forward(request, response);
         }
-        String distance = request.getParameter("dist");
-        request.getSession().setAttribute("dist", distance);
-
-        rd.forward(request, response);
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -82,23 +68,16 @@ public class ConfirmTaxi extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-    private java.util.List<Taxioperator> getpriceinfo() {
+    private String addCustomer(String username, String password, String email, String phone, boolean reported) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         service = new Database_Service();
         service.Database port = service.getDatabasePort();
-        return port.getpriceinfo();
+
+        return port.addCustomer(username, password, email, phone, reported);
     }
+
 }

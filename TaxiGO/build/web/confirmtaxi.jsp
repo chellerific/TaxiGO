@@ -40,6 +40,8 @@
                 <td><%=taxi.getPriceperkm()%></td>
                 <td><%=taxi.getWeekendfee()%></td>
                 <td><%=taxi.getRating()%></td>
+                <td><%=Double.parseDouble(request.getSession().getAttribute("dist").toString()) * taxi.getBaserate() * taxi.getPriceperkm()%></td>
+                <td><input type="checkbox" name="chosen" value= "<%=taxi.getOperator()%>" </td>
             </tr>
             <%
                         taxi = (Taxioperator) request.getAttribute("price" + index);
@@ -49,5 +51,8 @@
 
 
         </table>
+        <form action="ConfirmTaxi" method="POST">
+            <input type='submit' name="click" value="Confirm Booking" />
+        </form>
     </body>
 </html>
