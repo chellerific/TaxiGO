@@ -17,13 +17,17 @@
     <body>
         <h1>Welcome!</h1>
         <b>Bookings done in your company:</b>
-        <table border="2">
+        
+        <form method="POST" action="TaxiGoServlet">
+            <table border="2">
             <tr>
                 <td>Customer</td>
                 <td>Origin</td>
                 <td>Destination</td>
                 <td>Price</td>
                 <td>Booking ID</td>
+                <td>Report</td>
+                <td>Reported during this session</td>
             </tr>
             <%
                 Bookings booking = (Bookings)request.getAttribute("data0");
@@ -40,6 +44,8 @@
             <td><%=booking.getDestination() %></td>
             <td><%=booking.getPrice()%></td>
             <td><%=booking.getBookingid() %></td>
+            <td><input type="checkbox" name="chosen"value= "<%=booking.getCustomer()%>" </td>
+            <td><%=request.getSession().getAttribute("reported")%></td>
             </tr>
             <%
                 
@@ -48,6 +54,11 @@
             }
             %>
         </table>
+        <input type="submit" value="Report" name="function">
+        
+        </form>
+        <br>
+        
         <br>
         <b>Your price information:</b>
         <table border="2">

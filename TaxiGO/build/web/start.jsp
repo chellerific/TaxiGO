@@ -13,7 +13,18 @@
     </head>
     <body>
         <form method="POST" action="TaxiGoServlet"> 
-            <input type="submit" value="Go" name="function" />
+            <b>Please enter your username and password to log in: </b><br>
+            Username: <br>
+            <input type="text" name="username"><br>
+            Password: <br>
+            <input type="password" name="password"><br>
+            <input type="submit" value="Login" name="function" /><br>
+            <% String err = (String)request.getAttribute("error");
+                if (err == null) {
+                    err = "";
+                }
+            %>
+            <b> <%=err%> </b>
         </form>
     </body>
 </html>

@@ -20,6 +20,7 @@ import service.Clientinfo;
 import service.Database_Service;
 import service.Taxiinfo;
 import service.Taxioperator;
+import taxigoresource.EmailSender;
 
 /**
  *
@@ -70,38 +71,10 @@ public class ChooseUserServlet extends HttpServlet {
         } else if (clickBtn.equals("TaxiOperator")) {
             request.getRequestDispatcher("start.jsp").forward(request, response);
         } else if (clickBtn.equals("Administrator")) {
-            List <Clientinfo> clients = getclients();
-            List <Taxiinfo> taxis = getOperators();
-            
-            int size = clients.size();
-            for (int i = 0; i < size; i++) {
-                request.setAttribute("client" + i, clients.get(i));
-            }
-            
-            int taxisize = taxis.size();
-            for (int i = 0; i < taxisize; i++) {
-                request.setAttribute("taxi" + i, taxis.get(i));
-            }
-            
-            request.getRequestDispatcher("adminmain.jsp").forward(request, response);
+            request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
         }
 
     }
 
-    private java.util.List<service.Clientinfo> getclients() {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        service = new Database_Service();
-        service.Database port = service.getDatabasePort();
-        return port.getclients();
-    }
-
-    private java.util.List<service.Taxiinfo> getOperators() {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        service = new Database_Service();
-        service.Database port = service.getDatabasePort();
-        return port.getOperators();
-    }
 
 }

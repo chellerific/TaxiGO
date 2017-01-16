@@ -1,6 +1,6 @@
 <%-- 
-    Document   : start
-    Created on : Jan 3, 2017, 3:44:42 PM
+    Document   : adminlogin
+    Created on : Jan 16, 2017, 2:40:31 PM
     Author     : Sara
 --%>
 
@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form method="POST" action="TaxiGoServlet"> 
+        <form method="POST" action="AdminLoginServlet"> 
             <b>Please enter your username and password to log in: </b><br>
             Username: <br>
             <input type="text" name="username"><br>

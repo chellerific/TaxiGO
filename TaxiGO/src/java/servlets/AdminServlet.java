@@ -6,18 +6,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import java.util.Properties;
-import javax.mail.Address;
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -27,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
 import service.Database_Service;
+import taxigoresource.HashMD5;
 
 /**
  *
@@ -49,6 +38,8 @@ public class AdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HashMD5 md5 = new HashMD5();
+        
         String name = request.getParameter("number1");
         String baseRate = request.getParameter("number2");
         String pricePerKm = request.getParameter("number3");
@@ -57,7 +48,7 @@ public class AdminServlet extends HttpServlet {
         
         String email = request.getParameter("number6");
         String phone = request.getParameter("number7");
-        String password = request.getParameter("number8");
+        String password = md5.md5(request.getParameter("number8"));
     
         double base = 0;
         double perkm = 0;
@@ -141,61 +132,5 @@ public class AdminServlet extends HttpServlet {
         return port.addoperatorlogin(operator, password, email, phone);
     }
     
-    private void sendEmail(List <String> sendTo) {
-        try {
-            //This properties are valid for gmail.  You need to check for other mail providers/servers/agents.
-            Properties props = new Properties();
-            props.setProperty("mail.host", "smtp.gmail.com");
-            props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.auth", "true");
-            props.setProperty("mail.smtp.starttls.enable", "true");
-            System.out.println("So far so good -1 setting up session parameters");
-
-            //  Authentication is performed here.  
-            MyAuth auth = new MyAuth("SENDER", "PASSWORD");
-            System.out.println("So far so good-2 authenticator called....");
-
-            //  The mail session is instantiated
-            //  The rest is copied from Java Mail documentation.
-            String messageBody = "MESSAGE FROM INPUT";
-
-            Session mailConnection = Session.getInstance(props, auth);
-            Message msg = new MimeMessage(mailConnection);
-            Address sender = new InternetAddress("SENDER EMAIL HERE", "Travel Reservation System");
-            Address receiver = new InternetAddress("DESTINATION EMAIL HERE FROM INPUT");
-            Session session = Session.getInstance(props);
-            msg.setContent(messageBody, "text/plain");
-            msg.setFrom(sender);
-            msg.setRecipient(Message.RecipientType.TO, receiver);
-            msg.setSubject("Booking");
-
-            Transport transport = session.getTransport("smtp");
-            transport.connect("SENDER EMAIL HERE", "PASSWORD");
-
-
-            Transport.send(msg);
-        } catch (MessagingException e) {
-            System.out.printf("Messaging Exception: " + e.getMessage());
-//          throw new RuntimeException(e);
-        } catch (Exception ex) {
-            System.out.printf("General Exception: ");
-            ex.printStackTrace();
-        }
-        
-    }
-    
-    private class MyAuth extends Authenticator {
-
-        private PasswordAuthentication authentication;
-
-        public MyAuth(String login, String password) {
-            authentication = new PasswordAuthentication(login, password);
-        }
-
-        @Override
-        protected PasswordAuthentication getPasswordAuthentication() {
-            return authentication;
-        }
-    }
 
 }

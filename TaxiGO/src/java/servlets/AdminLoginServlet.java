@@ -1,31 +1,34 @@
-package servlets;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package servlets;
+
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
+import service.Admininfo;
 import service.Bookings;
+import service.Clientinfo;
 import service.Database_Service;
 import service.Taxiinfo;
 import service.Taxioperator;
-import taxigoresource.HashMD5;
 
 /**
  *
  * @author Sara
  */
-public class TaxiGoServlet extends HttpServlet {
-
+@WebServlet(name = "AdminLoginServlet", urlPatterns = {"/AdminLoginServlet"})
+public class AdminLoginServlet extends HttpServlet {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl")
     private Database_Service service;
 
@@ -40,40 +43,41 @@ public class TaxiGoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         ServletContext sc = null;
         RequestDispatcher rd = null;
         boolean found = false;
-        String function = (String) request.getParameter("function");
-        String username = "";
-        String password = "";
-        HashMD5 md5 = new HashMD5();
 
-        if (function.equals("Report")) {
+        String username = "";
+        String password = "";      
+        String function = (String) request.getParameter("function");
+        
+        if (function.equals("Remove")) {
             String name = request.getParameter("chosen");
             System.out.println("Checkbox value = " + name);
-            String res = reportuser(name);
+            String res = removeuser(name);
             System.out.println("The reporting is: " + res);
             username = (String)request.getSession().getAttribute("username");
             password = (String)request.getSession().getAttribute("password");
-            System.out.println("User after reporting: " + username);
-            System.out.println("Pass after reporting: " + password);
+            System.out.println("User after removing: " + username);
+            System.out.println("Pass after removing: " + password);
             request.getSession().setAttribute("reported", true);
         } else {
             username = request.getParameter("username");
-            password = md5.md5(request.getParameter("password"));
+            password = request.getParameter("password");
             request.getSession().setAttribute("reported", false);
         }
         
 
-        List<Taxiinfo> taxis = getOperators();
-        int s = taxis.size();
+        List<Admininfo> admins = getadmininfo();
+        int s = admins.size();
         String tempUser = null;
         String tempPass = null;
         found = false;
 
         for (int i = 0; i < s; i++) {
-            tempUser = taxis.get(i).getUsername();
-            tempPass = taxis.get(i).getPassword();
+            tempUser = admins.get(i).getUsername();
+            tempPass = admins.get(i).getPassword();
             if (tempUser.equalsIgnoreCase(username) && tempPass.equals(password)) {
                 found = true;
                 break;
@@ -81,17 +85,24 @@ public class TaxiGoServlet extends HttpServlet {
 
         }
         if (found) {
+            request.getSession().setAttribute("username", username);
+            request.getSession().setAttribute("password", password);
             sc = getServletContext();
-            rd = sc.getRequestDispatcher("/operatormain.jsp");
-            List<Bookings> bookings = getbookings(username, "operator");
-
-            int size = bookings.size();
+            rd = sc.getRequestDispatcher("/adminmain.jsp");
+            List <Clientinfo> clients = getclients();
+            List <Taxiinfo> infos = getOperators();
+            
+            int size = clients.size();
             for (int i = 0; i < size; i++) {
-                request.setAttribute("data" + i, bookings.get(i));
+                request.setAttribute("client" + i, clients.get(i));
             }
-
-            Taxioperator prices = getpriceinfoforoperator(username);
-            request.setAttribute("price", prices);
+            
+            int infosize = infos.size();
+            for (int i = 0; i < infosize; i++) {
+                request.setAttribute("taxi" + i, infos.get(i));
+            }
+            
+            request.getRequestDispatcher("adminmain.jsp").forward(request, response);
             
             request.getSession().setAttribute("username", username);
             request.getSession().setAttribute("password", password);
@@ -99,11 +110,26 @@ public class TaxiGoServlet extends HttpServlet {
             rd.forward(request, response);
         } else {
             sc = getServletContext();
-            rd = sc.getRequestDispatcher("/start.jsp");
+            rd = sc.getRequestDispatcher("/adminlogin.jsp");
             request.setAttribute("error", "Username and password don't match database!");
             rd.forward(request, response);
         }
+        }
 
+    private java.util.List<service.Clientinfo> getclients() {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        service = new Database_Service();
+        service.Database port = service.getDatabasePort();
+        return port.getclients();
+    }
+
+    private java.util.List<service.Taxiinfo> getOperators() {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        service = new Database_Service();
+        service.Database port = service.getDatabasePort();
+        return port.getOperators();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -145,35 +171,20 @@ public class TaxiGoServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private java.util.List<Bookings> getbookings(String username, String usertype) {
+    private java.util.List<service.Admininfo> getadmininfo() {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         service = new Database_Service();
         service.Database port = service.getDatabasePort();
-        return port.getbookings(username, usertype);
+        return port.getadmininfo();
     }
 
-    private java.util.List<service.Taxiinfo> getOperators() {
+    private String removeuser(java.lang.String username) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         service = new Database_Service();
         service.Database port = service.getDatabasePort();
-        return port.getOperators();
-    }
-
-    private Taxioperator getpriceinfoforoperator(java.lang.String operator) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        service.Database port = service.getDatabasePort();
-        return port.getpriceinfoforoperator(operator);
-    }
-
-    private String reportuser(java.lang.String username) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        service = new Database_Service();
-        service.Database port = service.getDatabasePort();
-        return port.reportuser(username);
+        return port.removeuser(username);
     }
 
 }

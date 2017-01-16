@@ -53,7 +53,7 @@ public class OperatorServlet extends HttpServlet {
             ex.printStackTrace();
         }
 
-        String name = "Taxi";
+        String name = (String)request.getSession().getAttribute("username");
 
         String s = updatePrice(name, base, perkm, wknd);
         System.out.println("Price update: " + s);

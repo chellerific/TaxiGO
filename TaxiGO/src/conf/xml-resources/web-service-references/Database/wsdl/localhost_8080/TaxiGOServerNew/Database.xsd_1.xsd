@@ -28,12 +28,42 @@
 
 <xs:element name="getpriceinfoResponse" type="tns:getpriceinfoResponse"/>
 
+<xs:element name="getpriceinfoforoperator" type="tns:getpriceinfoforoperator"/>
+
+<xs:element name="getpriceinfoforoperatorResponse" type="tns:getpriceinfoforoperatorResponse"/>
+
+<xs:element name="removeuser" type="tns:removeuser"/>
+
+<xs:element name="removeuserResponse" type="tns:removeuserResponse"/>
+
+<xs:element name="reportuser" type="tns:reportuser"/>
+
+<xs:element name="reportuserResponse" type="tns:reportuserResponse"/>
+
 <xs:element name="updatePrice" type="tns:updatePrice"/>
 
 <xs:element name="updatePriceResponse" type="tns:updatePriceResponse"/>
 
+<xs:complexType name="addoperatorlogin">
+<xs:sequence>
+<xs:element name="operator" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="phone" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addoperatorloginResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="getbookings">
-<xs:sequence/>
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="getbookingsResponse">
@@ -53,18 +83,25 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="addoperatorlogin">
+<xs:complexType name="getpriceinfoforoperator">
 <xs:sequence>
 <xs:element name="operator" type="xs:string" minOccurs="0"/>
-<xs:element name="password" type="xs:string" minOccurs="0"/>
-<xs:element name="email" type="xs:string" minOccurs="0"/>
-<xs:element name="phone" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="addoperatorloginResponse">
+<xs:complexType name="getpriceinfoforoperatorResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="tns:taxioperator" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="taxioperator">
+<xs:sequence>
+<xs:element name="baserate" type="xs:double"/>
+<xs:element name="operator" type="xs:string" minOccurs="0"/>
+<xs:element name="priceperkm" type="xs:double"/>
+<xs:element name="rating" type="xs:int"/>
+<xs:element name="weekendfee" type="xs:double" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -99,6 +136,25 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getadmininfo">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getadmininfoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:admininfo" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="admininfo">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="phone" type="xs:string" minOccurs="0"/>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="getOperators">
 <xs:sequence/>
 </xs:complexType>
@@ -118,22 +174,15 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getadmininfo">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="getadmininfoResponse">
+<xs:complexType name="reportuser">
 <xs:sequence>
-<xs:element name="return" type="tns:admininfo" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="admininfo">
+<xs:complexType name="reportuserResponse">
 <xs:sequence>
-<xs:element name="email" type="xs:string" minOccurs="0"/>
-<xs:element name="password" type="xs:string" minOccurs="0"/>
-<xs:element name="phone" type="xs:string" minOccurs="0"/>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -157,6 +206,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="removeuser">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="removeuserResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="getpriceinfo">
 <xs:sequence/>
 </xs:complexType>
@@ -164,16 +225,6 @@
 <xs:complexType name="getpriceinfoResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:taxioperator" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="taxioperator">
-<xs:sequence>
-<xs:element name="baserate" type="xs:double"/>
-<xs:element name="operator" type="xs:string" minOccurs="0"/>
-<xs:element name="priceperkm" type="xs:double"/>
-<xs:element name="rating" type="xs:int"/>
-<xs:element name="weekendfee" type="xs:double" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

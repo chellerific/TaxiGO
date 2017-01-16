@@ -16,35 +16,40 @@
     <body>
         <b>Here are lists of users:</b><br><br>
         <b>The users:</b><br>
-        <table border="2">
-            <tr>
-                <td>Username</td>
-                <td>Email</td>
-                <td>Phone</td>
-                <td>Reported</td>
-            </tr>
-            <%
-                Clientinfo client = (Clientinfo)request.getAttribute("client0");
-                int index = 0;
-                
-                if (client != null) {
-                    while (client != null) {
-                    index = index + 1;
-                    
-            %>
-            <tr>
-            <td><%=client.getUsername() %></td>
-            <td><%=client.getEmail() %></td>
-            <td><%=client.getPhone() %></td>
-            <td><%=client.isReported() %></td>
-            </tr>
-            <%
-                
-                    client = (Clientinfo)request.getAttribute("client" + index);
-                }
-            }
-            %>
-        </table> <br><br>
+        <form method="POST" action="AdminLoginServlet" >
+            <table border="2">
+                <tr>
+                    <td>Username</td>
+                    <td>Email</td>
+                    <td>Phone</td>
+                    <td>Reported</td>
+                </tr>
+                <%
+                    Clientinfo client = (Clientinfo) request.getAttribute("client0");
+                    int index = 0;
+
+                    if (client != null) {
+                        while (client != null) {
+                            index = index + 1;
+
+                %>
+                <tr>
+                    <td><%=client.getUsername()%></td>
+                    <td><%=client.getEmail()%></td>
+                    <td><%=client.getPhone()%></td>
+                    <td><%=client.isReported()%></td>
+                    <td><input type="checkbox" name="chosen"value= "<%=client.getUsername()%>" </td>
+
+                </tr>
+                <%
+
+                            client = (Clientinfo) request.getAttribute("client" + index);
+                        }
+                    }
+                %>
+            </table>
+            <input type="submit" value="Remove" name="function"> 
+        </form> <br><br>
 
         <b>The taxi operators:</b><br>
         <table border="2">
@@ -54,30 +59,30 @@
                 <td>Phone</td>
             </tr>
             <%
-                Taxiinfo taxi = (Taxiinfo)request.getAttribute("taxi0");
+                Taxiinfo taxi = (Taxiinfo) request.getAttribute("taxi0");
                 int i = 0;
-                
+
                 if (taxi != null) {
                     while (taxi != null) {
-                    i = i + 1;
-                    
+                        i = i + 1;
+
             %>
             <tr>
-            <td><%=taxi.getUsername()%></td>
-            <td><%=taxi.getEmail() %></td>
-            <td><%=taxi.getPhone()%></td>
+                <td><%=taxi.getUsername()%></td>
+                <td><%=taxi.getEmail()%></td>
+                <td><%=taxi.getPhone()%></td>
             </tr>
             <%
-                
-                    taxi = (Taxiinfo)request.getAttribute("taxi" + i);
+
+                        taxi = (Taxiinfo) request.getAttribute("taxi" + i);
+                    }
                 }
-            }
             %>
-        </table><br>
+        </table>
         <form method="POST" action=adminaddoperator.jsp> 
             <input type="submit" value="Add operator" name="function" />
         </form><br>
-        
+
         <b>Send e-mail to registered users: </b><br>
         <form method="POST" action=sendemail.jsp> 
             <input type="submit" value="Send e-mail" name="function" />

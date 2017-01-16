@@ -8,6 +8,10 @@
         <servlet-name>OperatorServlet</servlet-name>
         <servlet-class>servlets.OperatorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <servlet-class>servlets.AdminLoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TaxiGoServlet</servlet-name>
         <url-pattern>/TaxiGoServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>OperatorServlet</servlet-name>
         <url-pattern>/OperatorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <url-pattern>/AdminLoginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
