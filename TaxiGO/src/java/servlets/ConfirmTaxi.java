@@ -33,6 +33,8 @@ public class ConfirmTaxi extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl")
     private Database_Service service;
+    private double totalPrice;
+    private double distance;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -53,17 +55,23 @@ public class ConfirmTaxi extends HttpServlet {
         for (int i = 0; i < size; i++) {
             request.setAttribute("price" + i, prices.get(i));
         }
+        String origin = request.getParameter("origin");
+        String destination = request.getParameter("destination");
         String tempDist = request.getParameter("distance");
         Scanner scan = new Scanner(tempDist);
-        double distance = scan.nextDouble();
-
+        if (scan.hasNextDouble()) {
+            distance = scan.nextDouble();
+        } else {
+            distance = 0;
+        }
+        System.out.println("Scanner: " + scan);
 //        String parsedDist = parse(tempDist);
 //        System.out.println(parsedDist);
 //        double distance = Double.parseDouble(parsedDist);
         System.out.println(distance);
         double baseRate;
         double pricePerKm;
-        double totalPrice;
+
         ArrayList<Double> priceArr = new ArrayList<>();
         String clickBtn = request.getParameter("click");
 
@@ -77,11 +85,13 @@ public class ConfirmTaxi extends HttpServlet {
                                     + (pricePerKm * distance)));
             priceArr.add(totalPrice);
             System.out.println("Total Price: " + totalPrice);
-            request.setAttribute("priceArr", priceArr);
         }
+        request.setAttribute("priceArr", priceArr);
 
-        if (clickBtn.equals("Confirm Your Booking")) {
-
+        if (clickBtn.equals("Confirm Booking")) {
+            String chosen = request.getParameter("chosen");
+            System.out.println(chosen);
+            addBooking(chosen, "guest", origin, destination, totalPrice);
         }
 
         rd.forward(request, response);
@@ -135,15 +145,14 @@ public class ConfirmTaxi extends HttpServlet {
         return port.getpriceinfo();
     }
 
-//    private String parse(String distance) {
-//        Pattern p = Pattern.compile("[a-z]+|\\d+");
-//        Matcher m = p.matcher(distance);
-//        ArrayList<String> allMatches = new ArrayList<>();
-//        while (m.find()) {
-//            allMatches.add(m.group());
-//        }
-//        System.out.println(allMatches.toString());
-//        String distNmbr = allMatches.get(0);
-//        return distNmbr;
-//    }
+    private String addBooking(String companyName, String customer, String origin,
+            String destination, double price) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        service = new Database_Service();
+        service.Database port = service.getDatabasePort();
+
+        return port.addBooking(companyName, customer, origin, destination, price);
+    }
+
 }
