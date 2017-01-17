@@ -55,6 +55,7 @@ public class CustomerLogIn extends HttpServlet {
                 }
             }
             if (found) {
+                
                 request.getRequestDispatcher("customermain.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", "Invalid username or password.");

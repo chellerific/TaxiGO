@@ -4,6 +4,7 @@
     Author     : Chelsi
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="service.Taxioperator"%>
 <%@page import="java.util.List"%>
 
@@ -23,9 +24,11 @@
                 <td>Price Per Kilometer</td>
                 <td>Weekend Fee</td>
                 <td>Rating</td>
+                <td>Total Price</td>
             </tr>
             <%
                 Taxioperator taxi = (Taxioperator) request.getAttribute("price0");
+
                 int index = 0;
 
                 if (taxi != null) {
@@ -40,11 +43,13 @@
                 <td><%=taxi.getPriceperkm()%></td>
                 <td><%=taxi.getWeekendfee()%></td>
                 <td><%=taxi.getRating()%></td>
-                <td><%=Double.parseDouble(request.getSession().getAttribute("dist").toString()) * taxi.getBaserate() * taxi.getPriceperkm()%></td>
+                <td> <%List<Double> priceArr = (List<Double>) request.getAttribute("priceArr");
+                    %> </td>
                 <td><input type="checkbox" name="chosen" value= "<%=taxi.getOperator()%>" </td>
             </tr>
             <%
                         taxi = (Taxioperator) request.getAttribute("price" + index);
+                        priceArr.get(index);
                     }
                 }
             %>
