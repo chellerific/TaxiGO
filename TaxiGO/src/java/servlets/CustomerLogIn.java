@@ -36,6 +36,9 @@ public class CustomerLogIn extends HttpServlet {
         String username = request.getParameter("uname");
         String password = request.getParameter("pass");
         String clickBtn = request.getParameter("click");
+        
+//        HashMD5 md5 = new HashMD5();
+//        String password = md5.md5(request.getParameter("pass"));
 
         List<Clientinfo> customers = getCustomer();
         boolean found = false;

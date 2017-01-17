@@ -49,52 +49,54 @@ public class ConfirmTaxi extends HttpServlet {
             throws ServletException, IOException {
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/confirmtaxi.jsp");
+        String clickBtn = (String) request.getParameter("click");
+        String origin = request.getParameter("origin");
+        String destination = request.getParameter("destination");
+        String tempDist = request.getParameter("distance");
 
         List<Taxioperator> prices = getpriceinfo();
         int size = prices.size();
         for (int i = 0; i < size; i++) {
             request.setAttribute("price" + i, prices.get(i));
         }
-        String origin = request.getParameter("origin");
-        String destination = request.getParameter("destination");
-        String tempDist = request.getParameter("distance");
-        Scanner scan = new Scanner(tempDist);
-        if (scan.hasNextDouble()) {
-            distance = scan.nextDouble();
-        } else {
-            distance = 0;
-        }
-        System.out.println("Scanner: " + scan);
-//        String parsedDist = parse(tempDist);
-//        System.out.println(parsedDist);
-//        double distance = Double.parseDouble(parsedDist);
-        System.out.println(distance);
-        double baseRate;
-        double pricePerKm;
 
-        ArrayList<Double> priceArr = new ArrayList<>();
-        String clickBtn = request.getParameter("click");
-
-        for (int i = 0; i < size; i++) {
-            baseRate = prices.get(i).getBaserate();
-            System.out.println("Base rate: " + baseRate);
-            pricePerKm = prices.get(i).getPriceperkm();
-            System.out.println("Price / km: " + pricePerKm);
-            totalPrice
-                    = Double.parseDouble(new DecimalFormat("##.##").format(baseRate
-                                    + (pricePerKm * distance)));
-            priceArr.add(totalPrice);
-            System.out.println("Total Price: " + totalPrice);
-        }
-        request.setAttribute("priceArr", priceArr);
-
-        if (clickBtn.equals("Confirm Booking")) {
+//        Scanner scan = new Scanner(tempDist);
+//        if (scan.hasNextDouble()) {
+//            distance = scan.nextDouble();
+//        } else {
+//            distance = 0;
+//        }
+        if (clickBtn.equals("Confirm Booking Plan")) {
             String chosen = request.getParameter("chosen");
-            System.out.println(chosen);
-            addBooking(chosen, "guest", origin, destination, totalPrice);
-        }
+            System.out.println("Taxi Operator: " + chosen);
+            String booking = addBooking(chosen, "guest", origin, destination, totalPrice);
+            System.out.println("Booking saved: " + booking);
+        } else {
 
-        rd.forward(request, response);
+            String parsedDist = parseDist(tempDist);
+            System.out.println(parsedDist);
+            distance = Double.parseDouble(parsedDist);
+            System.out.println(distance);
+            double baseRate;
+            double pricePerKm;
+
+            ArrayList<Double> priceArr = new ArrayList<>();
+
+            for (int i = 0; i < size; i++) {
+                baseRate = prices.get(i).getBaserate();
+                System.out.println("Base rate: " + baseRate);
+                pricePerKm = prices.get(i).getPriceperkm();
+                System.out.println("Price / km: " + pricePerKm);
+                totalPrice
+                        = Double.parseDouble(new DecimalFormat("##.##").format(baseRate
+                                        + (pricePerKm * distance)));
+                priceArr.add(totalPrice);
+                System.out.println("Total Price: " + totalPrice);
+            }
+            request.setAttribute("priceArr", priceArr);
+            rd.forward(request, response);
+
+        }
 
     }
 
@@ -153,6 +155,16 @@ public class ConfirmTaxi extends HttpServlet {
         service.Database port = service.getDatabasePort();
 
         return port.addBooking(companyName, customer, origin, destination, price);
+    }
+
+    private String parseDist(String distance) {
+        Pattern p = Pattern.compile("[a-z]+|\\d+\\.\\d+");
+        Matcher m = p.matcher(distance);
+        ArrayList<String> allMatches = new ArrayList<>();
+        while (m.find()) {
+            allMatches.add(m.group());
+        }
+        return allMatches.get(0);
     }
 
 }

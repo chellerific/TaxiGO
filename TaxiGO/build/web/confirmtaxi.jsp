@@ -56,7 +56,7 @@
 
         </table>
         <form action="ConfirmTaxi" method="POST">
-            <input type='submit' name="click" value="Confirm Booking" />
+            <input type='submit' name="click" value="Confirm Booking Plan" />
         </form>
     </body>
 </html>
