@@ -9,9 +9,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>TaxiGO</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form action="AdminSendEmailServlet" method="POST">
+            <b>You can send email to customers below:</b><br><br>
+            Subject:<br>
+            <input type="text" name="title" autofocus="true"><br>
+            Message: <br>
+            
+            <textarea name="message" cols="100" rows="20">
+                
+            </textarea><br>
+            <input type="submit" name="button" value="Send">
+        </form>
     </body>
 </html>

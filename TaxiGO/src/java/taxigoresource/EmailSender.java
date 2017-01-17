@@ -23,7 +23,7 @@ import javax.mail.internet.MimeMessage;
  */
 public class EmailSender {
     
-    public void sendEmail(String sendTo, String message) {
+    public void sendEmail(String sendTo, String title, String message) {
         try {
             //This properties are valid for gmail.  You need to check for other mail providers/servers/agents.
             Properties props = new Properties();
@@ -47,7 +47,7 @@ public class EmailSender {
             msg.setContent(message, "text/plain");
             msg.setFrom(sender);
             msg.setRecipient(Message.RecipientType.TO, receiver);
-            msg.setSubject("Booking");
+            msg.setSubject(title);
 
             Transport transport = session.getTransport("smtp");
             transport.connect("taxigo.project@gmail.com", "taxigo12345");
