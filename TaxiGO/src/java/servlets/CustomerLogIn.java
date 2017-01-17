@@ -26,43 +26,49 @@ import service.Taxioperator;
  */
 @WebServlet(name = "CustomerLogIn", urlPatterns = {"/CustomerLogIn"})
 public class CustomerLogIn extends HttpServlet {
-    
+
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl")
     private Database_Service service;
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = request.getParameter("uname");
         String password = request.getParameter("pass");
         String clickBtn = request.getParameter("click");
-        
+
         List<Clientinfo> customers = getCustomer();
         boolean found = false;
+        ServletContext sc = null;
+        RequestDispatcher rd = null;
         String uname;
         String pass;
-        
+
         if (clickBtn.equals("Log In")) {
             for (int i = 0; i < customers.size(); i++) {
                 uname = customers.get(i).getUsername();
                 pass = customers.get(i).getPassword();
                 if (uname.equalsIgnoreCase(username)
                         && pass.equals(password)) {
-                    
+
                     found = true;
                     break;
-                    
+
                 }
             }
             if (found) {
-                
+                request.getSession().setAttribute("uname", username);
+                request.getSession().setAttribute("pass", password);
                 request.getRequestDispatcher("customermain.jsp").forward(request, response);
             } else {
+                sc = getServletContext();
+                rd = sc.getRequestDispatcher("/customerlogin.jsp");
                 request.setAttribute("error", "Invalid username or password.");
+                rd.forward(request, response);
             }
         } else if (clickBtn.equals("Register")) {
             request.getRequestDispatcher("customerregister.jsp").forward(request, response);
-            
+
         }
     }
 
@@ -77,9 +83,9 @@ public class CustomerLogIn extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
-    
+
     private java.util.List<Clientinfo> getCustomer() {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.

@@ -4,6 +4,24 @@
 <xsd:import namespace="http://service/" schemaLocation="http://localhost:8080/TaxiGOServerNew/Database?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="addCustomer">
+<part name="parameters" element="tns:addCustomer"/>
+</message>
+<message name="addCustomerResponse">
+<part name="parameters" element="tns:addCustomerResponse"/>
+</message>
+<message name="getOperators">
+<part name="parameters" element="tns:getOperators"/>
+</message>
+<message name="getOperatorsResponse">
+<part name="parameters" element="tns:getOperatorsResponse"/>
+</message>
+<message name="getpriceinfo">
+<part name="parameters" element="tns:getpriceinfo"/>
+</message>
+<message name="getpriceinfoResponse">
+<part name="parameters" element="tns:getpriceinfoResponse"/>
+</message>
 <message name="removeuser">
 <part name="parameters" element="tns:removeuser"/>
 </message>
@@ -16,11 +34,11 @@
 <message name="reportuserResponse">
 <part name="parameters" element="tns:reportuserResponse"/>
 </message>
-<message name="addBooking">
-<part name="parameters" element="tns:addBooking"/>
+<message name="addoperatorlogin">
+<part name="parameters" element="tns:addoperatorlogin"/>
 </message>
-<message name="addBookingResponse">
-<part name="parameters" element="tns:addBookingResponse"/>
+<message name="addoperatorloginResponse">
+<part name="parameters" element="tns:addoperatorloginResponse"/>
 </message>
 <message name="addoperator">
 <part name="parameters" element="tns:addoperator"/>
@@ -28,29 +46,11 @@
 <message name="addoperatorResponse">
 <part name="parameters" element="tns:addoperatorResponse"/>
 </message>
-<message name="addoperatorlogin">
-<part name="parameters" element="tns:addoperatorlogin"/>
+<message name="addBooking">
+<part name="parameters" element="tns:addBooking"/>
 </message>
-<message name="addoperatorloginResponse">
-<part name="parameters" element="tns:addoperatorloginResponse"/>
-</message>
-<message name="getpriceinfo">
-<part name="parameters" element="tns:getpriceinfo"/>
-</message>
-<message name="getpriceinfoResponse">
-<part name="parameters" element="tns:getpriceinfoResponse"/>
-</message>
-<message name="addCustomer">
-<part name="parameters" element="tns:addCustomer"/>
-</message>
-<message name="addCustomerResponse">
-<part name="parameters" element="tns:addCustomerResponse"/>
-</message>
-<message name="getOperators">
-<part name="parameters" element="tns:getOperators"/>
-</message>
-<message name="getOperatorsResponse">
-<part name="parameters" element="tns:getOperatorsResponse"/>
+<message name="addBookingResponse">
+<part name="parameters" element="tns:addBookingResponse"/>
 </message>
 <message name="getclients">
 <part name="parameters" element="tns:getclients"/>
@@ -83,6 +83,18 @@
 <part name="parameters" element="tns:getpriceinfoforoperatorResponse"/>
 </message>
 <portType name="Database">
+<operation name="addCustomer">
+<input wsam:Action="http://service/Database/addCustomerRequest" message="tns:addCustomer"/>
+<output wsam:Action="http://service/Database/addCustomerResponse" message="tns:addCustomerResponse"/>
+</operation>
+<operation name="getOperators">
+<input wsam:Action="http://service/Database/getOperatorsRequest" message="tns:getOperators"/>
+<output wsam:Action="http://service/Database/getOperatorsResponse" message="tns:getOperatorsResponse"/>
+</operation>
+<operation name="getpriceinfo">
+<input wsam:Action="http://service/Database/getpriceinfoRequest" message="tns:getpriceinfo"/>
+<output wsam:Action="http://service/Database/getpriceinfoResponse" message="tns:getpriceinfoResponse"/>
+</operation>
 <operation name="removeuser">
 <input wsam:Action="http://service/Database/removeuserRequest" message="tns:removeuser"/>
 <output wsam:Action="http://service/Database/removeuserResponse" message="tns:removeuserResponse"/>
@@ -91,29 +103,17 @@
 <input wsam:Action="http://service/Database/reportuserRequest" message="tns:reportuser"/>
 <output wsam:Action="http://service/Database/reportuserResponse" message="tns:reportuserResponse"/>
 </operation>
-<operation name="addBooking">
-<input wsam:Action="http://service/Database/addBookingRequest" message="tns:addBooking"/>
-<output wsam:Action="http://service/Database/addBookingResponse" message="tns:addBookingResponse"/>
+<operation name="addoperatorlogin">
+<input wsam:Action="http://service/Database/addoperatorloginRequest" message="tns:addoperatorlogin"/>
+<output wsam:Action="http://service/Database/addoperatorloginResponse" message="tns:addoperatorloginResponse"/>
 </operation>
 <operation name="addoperator">
 <input wsam:Action="http://service/Database/addoperatorRequest" message="tns:addoperator"/>
 <output wsam:Action="http://service/Database/addoperatorResponse" message="tns:addoperatorResponse"/>
 </operation>
-<operation name="addoperatorlogin">
-<input wsam:Action="http://service/Database/addoperatorloginRequest" message="tns:addoperatorlogin"/>
-<output wsam:Action="http://service/Database/addoperatorloginResponse" message="tns:addoperatorloginResponse"/>
-</operation>
-<operation name="getpriceinfo">
-<input wsam:Action="http://service/Database/getpriceinfoRequest" message="tns:getpriceinfo"/>
-<output wsam:Action="http://service/Database/getpriceinfoResponse" message="tns:getpriceinfoResponse"/>
-</operation>
-<operation name="addCustomer">
-<input wsam:Action="http://service/Database/addCustomerRequest" message="tns:addCustomer"/>
-<output wsam:Action="http://service/Database/addCustomerResponse" message="tns:addCustomerResponse"/>
-</operation>
-<operation name="getOperators">
-<input wsam:Action="http://service/Database/getOperatorsRequest" message="tns:getOperators"/>
-<output wsam:Action="http://service/Database/getOperatorsResponse" message="tns:getOperatorsResponse"/>
+<operation name="addBooking">
+<input wsam:Action="http://service/Database/addBookingRequest" message="tns:addBooking"/>
+<output wsam:Action="http://service/Database/addBookingResponse" message="tns:addBookingResponse"/>
 </operation>
 <operation name="getclients">
 <input wsam:Action="http://service/Database/getclientsRequest" message="tns:getclients"/>
@@ -138,6 +138,33 @@
 </portType>
 <binding name="DatabasePortBinding" type="tns:Database">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="addCustomer">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getOperators">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getpriceinfo">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="removeuser">
 <soap:operation soapAction=""/>
 <input>
@@ -156,7 +183,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="addBooking">
+<operation name="addoperatorlogin">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -174,34 +201,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="addoperatorlogin">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getpriceinfo">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="addCustomer">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getOperators">
+<operation name="addBooking">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

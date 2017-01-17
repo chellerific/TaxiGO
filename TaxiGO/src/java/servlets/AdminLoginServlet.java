@@ -104,8 +104,6 @@ public class AdminLoginServlet extends HttpServlet {
             
             request.getRequestDispatcher("adminmain.jsp").forward(request, response);
             
-            request.getSession().setAttribute("username", username);
-            request.getSession().setAttribute("password", password);
 
             rd.forward(request, response);
         } else {

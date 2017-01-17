@@ -28,12 +28,12 @@
             </tr>
             <%
                 Taxioperator taxi = (Taxioperator) request.getAttribute("price0");
+                List<Double> priceArr = (List<Double>) request.getAttribute("priceArr");
 
                 int index = 0;
 
                 if (taxi != null) {
                     while (taxi != null) {
-                        index = index + 1;
 
 
             %>
@@ -43,13 +43,12 @@
                 <td><%=taxi.getPriceperkm()%></td>
                 <td><%=taxi.getWeekendfee()%></td>
                 <td><%=taxi.getRating()%></td>
-                <td> <%List<Double> priceArr = (List<Double>) request.getAttribute("priceArr");
-                    %> </td>
+                <td> <%=priceArr.get(index)%> </td>
                 <td><input type="checkbox" name="chosen" value= "<%=taxi.getOperator()%>" </td>
             </tr>
             <%
+                        index = index + 1;
                         taxi = (Taxioperator) request.getAttribute("price" + index);
-                        priceArr.get(index);
                     }
                 }
             %>
