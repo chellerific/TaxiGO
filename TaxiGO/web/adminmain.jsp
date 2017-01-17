@@ -11,10 +11,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Main page</title>
+        <title>Administrator Main - Taxi GO</title>
     </head>
     <body>
-        <b>Here are lists of users:</b><br><br>
+        <b>List of Customers</b><br><br>
         <b>The users:</b><br>
         <form method="POST" action="AdminLoginServlet" >
             <table border="2">
@@ -51,7 +51,7 @@
             <input type="submit" value="Remove" name="function"> 
         </form> <br><br>
 
-        <b>The taxi operators:</b><br>
+        <b>List of Taxi Operators</b><br>
         <table border="2">
             <tr>
                 <td>Username</td>
@@ -83,7 +83,7 @@
             <input type="submit" value="Add operator" name="function" />
         </form><br>
 
-        <b>Send e-mail to registered users: </b><br>
+        <b>Send E-mail to Registered Users</b><br>
         <form method="POST" action=sendemail.jsp> 
             <input type="submit" value="Send e-mail" name="function" />
         </form><br>

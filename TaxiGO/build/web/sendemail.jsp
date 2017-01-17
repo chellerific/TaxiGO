@@ -9,11 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>TaxiGO</title>
+        <title>Administration - Taxi GO</title>
     </head>
     <body>
         <form action="AdminSendEmailServlet" method="POST">
-            <b>You can send email to customers below:</b><br><br>
+            <b>You can send email to customers below.</b><br><br>
             Subject:<br>
             <input type="text" name="title" autofocus="true"><br>
             Message: <br>

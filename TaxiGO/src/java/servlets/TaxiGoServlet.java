@@ -99,7 +99,7 @@ public class TaxiGoServlet extends HttpServlet {
             rd.forward(request, response);
         } else {
             sc = getServletContext();
-            rd = sc.getRequestDispatcher("/start.jsp");
+            rd = sc.getRequestDispatcher("/operatorlogin.jsp");
             request.setAttribute("error", "Username and password don't match database!");
             rd.forward(request, response);
         }

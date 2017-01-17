@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Taxi GO</title>
+        <title>Home - Taxi GO</title>
     </head>
     <body>
         <h1>Welcome to Taxi GO! Book your travel now.</h1>

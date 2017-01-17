@@ -67,9 +67,10 @@ public class ChooseUserServlet extends HttpServlet {
             request.getRequestDispatcher("guestbooking.jsp").forward(request, response);
 
         } else if (clickBtn.equals("Customer")) {
+            request.getRequestDispatcher("customerlogin.jsp").forward(request, response);
 
         } else if (clickBtn.equals("TaxiOperator")) {
-            request.getRequestDispatcher("start.jsp").forward(request, response);
+            request.getRequestDispatcher("operatorlogin.jsp").forward(request, response);
         } else if (clickBtn.equals("Administrator")) {
             request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
         }

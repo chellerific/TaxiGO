@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add operator</title>
+        <title>Add Operator - Taxi GO</title>
     </head>
     <body>
         <b>You can add a new operator here:</b>

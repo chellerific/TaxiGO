@@ -7,6 +7,7 @@ package servlets;
 
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +37,10 @@ public class GuestServlet extends HttpServlet {
 
         if (clickBtn.equals("Book a Travel")) {
 
-            request.getRequestDispatcher("travelresults.jsp").forward(request, response);
+            request.getRequestDispatcher("guesttravelresults.jsp").forward(request, response);
+            ServletContext sc = getServletContext();
+            sc.setAttribute("destStr", dest);
+            sc.setAttribute("originStr", origin);
         }
     }
 

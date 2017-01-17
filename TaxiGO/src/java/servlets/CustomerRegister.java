@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
 import service.Database_Service;
+import taxigoresource.HashMD5;
 
 /**
  *
@@ -35,8 +36,10 @@ public class CustomerRegister extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HashMD5 md5 = new HashMD5();
+
         String username = request.getParameter("uname");
-        String password = request.getParameter("pass");
+        String password = md5.md5(request.getParameter("pass"));
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
 

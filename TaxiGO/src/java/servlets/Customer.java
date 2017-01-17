@@ -30,12 +30,11 @@ public class Customer extends HttpServlet {
         dest = request.getParameter("dest");
         String clickBtn = request.getParameter("click");
 
-        request.setAttribute("originLoc", origin);
-        request.setAttribute("destLoc", dest);
+        request.setAttribute("custOriginLoc", origin);
+        request.setAttribute("custDestLoc", dest);
 
         if (clickBtn.equals("Book a Travel")) {
-
-            request.getRequestDispatcher("travelresults.jsp").forward(request, response);
+            request.getRequestDispatcher("customertravelresults.jsp").forward(request, response);
         }
     }
 

@@ -19,6 +19,7 @@ import service.Bookings;
 import service.Clientinfo;
 import service.Database_Service;
 import service.Taxioperator;
+import taxigoresource.HashMD5;
 
 /**
  *
@@ -34,11 +35,11 @@ public class CustomerLogIn extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = request.getParameter("uname");
-        String password = request.getParameter("pass");
+//        String password = request.getParameter("pass");
         String clickBtn = request.getParameter("click");
         
-//        HashMD5 md5 = new HashMD5();
-//        String password = md5.md5(request.getParameter("pass"));
+        HashMD5 md5 = new HashMD5();
+        String password = md5.md5(request.getParameter("pass"));
 
         List<Clientinfo> customers = getCustomer();
         boolean found = false;

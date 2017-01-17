@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Update</title>
+        <title>Operator Edit - Taxi GO</title>
     </head>
     <body>
-        <b>You can update the prices below</b>
+        <b>You can update your prices below.</b>
         <form method="POST" action="OperatorServlet">
             Base fare:
             <input type="number" name="number1"><br>

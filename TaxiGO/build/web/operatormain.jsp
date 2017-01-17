@@ -12,11 +12,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Operator</title>
+        <title>Operator - Taxi GO</title>
     </head>
     <body>
         <h1>Welcome!</h1>
-        <b>Bookings done in your company:</b>
+        <b>Bookings Done in Your Company</b>
         
         <form method="POST" action="TaxiGoServlet">
             <table border="2">
@@ -60,7 +60,7 @@
         <br>
         
         <br>
-        <b>Your price information:</b>
+        <b>Your Price Information</b>
         <table border="2">
             <tr>
                 <td>Base rate</td>
@@ -79,7 +79,7 @@
             </tr>
 
         </table>
-        <b>If you want to edit your price information, press button below.</b>
+        <b>If you want to edit your price information, press the button below.</b>
         <form method="POST" action="operatorupdate.jsp"> 
             <input type="submit" value="Edit" name="function" />
         </form>

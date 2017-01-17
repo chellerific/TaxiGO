@@ -1,6 +1,6 @@
 <%-- 
-    Document   : operatorlogin
-    Created on : Jan 14, 2017, 8:13:26 PM
+    Document   : start
+    Created on : Jan 3, 2017, 3:44:42 PM
     Author     : Sara
 --%>
 
@@ -9,11 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Taxi GO</title>
     </head>
     <body>
-        <form action="start.jsp" method="POST">
-            <input type='submit' name="click" value="Go" />
+        <h1>Welcome, Operator!</h1>
+        <form method="POST" action="TaxiGoServlet"> 
+            <b>Please enter your username and password to log in: </b><br>
+            Username: <br>
+            <input type="text" name="username"><br>
+            Password: <br>
+            <input type="password" name="password"><br>
+            <input type="submit" value="Login" name="function" /><br>
+            <% String err = (String)request.getAttribute("error");
+                if (err == null) {
+                    err = "";
+                }
+            %>
+            <b> <%=err%> </b>
         </form>
     </body>
 </html>

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : taxioperatorlist
-    Created on : Jan 14, 2017, 7:18:50 PM
-    Author     : student
+    Document   : guestreceipt
+    Created on : Jan 17, 2017, 10:22:26 PM
+    Author     : Chelsi
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,10 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Booking</title>
+        <title>Booking Complete - Taxi GO</title>
     </head>
     <body>
-        <h1>List of Taxi Operators</h1>
-        
+        <h1>Your travel plan has now been booked.</h1>
     </body>
 </html>

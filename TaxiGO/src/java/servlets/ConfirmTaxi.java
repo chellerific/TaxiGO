@@ -35,6 +35,8 @@ public class ConfirmTaxi extends HttpServlet {
     private Database_Service service;
     private double totalPrice;
     private double distance;
+    private String origin;
+    private String destination;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,8 +52,8 @@ public class ConfirmTaxi extends HttpServlet {
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/confirmtaxi.jsp");
         String clickBtn = (String) request.getParameter("click");
-        String origin = request.getParameter("origin");
-        String destination = request.getParameter("destination");
+        origin = (String) sc.getAttribute("originStr");
+        destination = (String) sc.getAttribute("destStr");
         String tempDist = request.getParameter("distance");
 
         List<Taxioperator> prices = getpriceinfo();
@@ -70,6 +72,9 @@ public class ConfirmTaxi extends HttpServlet {
             String chosen = request.getParameter("chosen");
             System.out.println("Taxi Operator: " + chosen);
             String booking = addBooking(chosen, "guest", origin, destination, totalPrice);
+            System.out.println("Origin: " + origin);
+            System.out.println("Destination: " + destination);
+
             System.out.println("Booking saved: " + booking);
         } else {
 

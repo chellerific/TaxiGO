@@ -1,6 +1,6 @@
 <%-- 
-    Document   : results
-    Created on : Jan 14, 2017, 5:59:12 PM
+    Document   : customertravelresults
+    Created on : Jan 17, 2017, 8:49:51 PM
     Author     : Chelsi
 --%>
 
@@ -9,14 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Guest Booking</title>
+        <title>Customer Booking - Taxi GO</title>
     </head>
-
-
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyBNbG6ORa4A8nX8VEAoufHiWn_LC9LsPk0"></script>
     <script type="text/javascript">
-        var origin = "<%= request.getAttribute("originLoc")%>",
-                destination = "<%= request.getAttribute("destLoc")%>",
+        var origin = "<%= request.getAttribute("custOriginLoc")%>",
+                destination = "<%= request.getAttribute("custDestLoc")%>",
                 service = new google.maps.DistanceMatrixService();
 
         service.getDistanceMatrix(
