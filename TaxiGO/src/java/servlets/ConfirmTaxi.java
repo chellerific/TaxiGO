@@ -6,8 +6,12 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -71,7 +75,12 @@ public class ConfirmTaxi extends HttpServlet {
         if (clickBtn.equals("Confirm Booking Plan")) {
             String chosen = request.getParameter("chosen");
             System.out.println("Taxi Operator: " + chosen);
-            String booking = addBooking(chosen, "guest", origin, destination, totalPrice);
+
+            
+            String date = request.getParameter("date");
+            String time = request.getParameter("time");
+            
+            String booking = addBooking(chosen, "guest", origin, destination, totalPrice, date, time);
             System.out.println("Origin: " + origin);
             System.out.println("Destination: " + destination);
 
@@ -155,23 +164,19 @@ public class ConfirmTaxi extends HttpServlet {
     }
 
     private String addBooking(String companyName, String customer, String origin,
-            String destination, double price) {
+            String destination, double price, String date, String time) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         service = new Database_Service();
         service.Database port = service.getDatabasePort();
 
-        return port.addBooking(companyName, customer, origin, destination, price);
+        return port.addBooking(companyName, customer, origin, destination, price, date, time);
     }
 
     private String parseDist(String distance) {
-        Pattern p = Pattern.compile("[a-z]+|\\d+\\.\\d+");
-        Matcher m = p.matcher(distance);
-        ArrayList<String> allMatches = new ArrayList<>();
-        while (m.find()) {
-            allMatches.add(m.group());
-        }
-        return allMatches.get(0);
+        String[] numbers = distance.split(" ");
+        
+        return numbers[0];
     }
 
 }

@@ -21,6 +21,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="origin" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="destination" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *         &lt;element name="date" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="time" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,7 +37,9 @@ import javax.xml.bind.annotation.XmlType;
     "customer",
     "origin",
     "destination",
-    "price"
+    "price",
+    "date",
+    "time"
 })
 public class AddBooking {
 
@@ -44,6 +48,8 @@ public class AddBooking {
     protected String origin;
     protected String destination;
     protected double price;
+    protected String date;
+    protected String time;
 
     /**
      * Gets the value of the companyname property.
@@ -155,6 +161,54 @@ public class AddBooking {
      */
     public void setPrice(double value) {
         this.price = value;
+    }
+
+    /**
+     * Gets the value of the date property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDate() {
+        return date;
+    }
+
+    /**
+     * Sets the value of the date property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDate(String value) {
+        this.date = value;
+    }
+
+    /**
+     * Gets the value of the time property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTime() {
+        return time;
+    }
+
+    /**
+     * Sets the value of the time property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTime(String value) {
+        this.time = value;
     }
 
 }

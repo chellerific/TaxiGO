@@ -27,87 +27,6 @@ public interface Database {
 
     /**
      * 
-     * @param reported
-     * @param phone
-     * @param username
-     * @param email
-     * @param password
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addCustomer", targetNamespace = "http://service/", className = "service.AddCustomer")
-    @ResponseWrapper(localName = "addCustomerResponse", targetNamespace = "http://service/", className = "service.AddCustomerResponse")
-    @Action(input = "http://service/Database/addCustomerRequest", output = "http://service/Database/addCustomerResponse")
-    public String addCustomer(
-        @WebParam(name = "username", targetNamespace = "")
-        String username,
-        @WebParam(name = "password", targetNamespace = "")
-        String password,
-        @WebParam(name = "email", targetNamespace = "")
-        String email,
-        @WebParam(name = "phone", targetNamespace = "")
-        String phone,
-        @WebParam(name = "reported", targetNamespace = "")
-        boolean reported);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<service.Taxiinfo>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getOperators", targetNamespace = "http://service/", className = "service.GetOperators")
-    @ResponseWrapper(localName = "getOperatorsResponse", targetNamespace = "http://service/", className = "service.GetOperatorsResponse")
-    @Action(input = "http://service/Database/getOperatorsRequest", output = "http://service/Database/getOperatorsResponse")
-    public List<Taxiinfo> getOperators();
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<service.Taxioperator>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getpriceinfo", targetNamespace = "http://service/", className = "service.Getpriceinfo")
-    @ResponseWrapper(localName = "getpriceinfoResponse", targetNamespace = "http://service/", className = "service.GetpriceinfoResponse")
-    @Action(input = "http://service/Database/getpriceinfoRequest", output = "http://service/Database/getpriceinfoResponse")
-    public List<Taxioperator> getpriceinfo();
-
-    /**
-     * 
-     * @param username
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "removeuser", targetNamespace = "http://service/", className = "service.Removeuser")
-    @ResponseWrapper(localName = "removeuserResponse", targetNamespace = "http://service/", className = "service.RemoveuserResponse")
-    @Action(input = "http://service/Database/removeuserRequest", output = "http://service/Database/removeuserResponse")
-    public String removeuser(
-        @WebParam(name = "username", targetNamespace = "")
-        String username);
-
-    /**
-     * 
-     * @param username
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "reportuser", targetNamespace = "http://service/", className = "service.Reportuser")
-    @ResponseWrapper(localName = "reportuserResponse", targetNamespace = "http://service/", className = "service.ReportuserResponse")
-    @Action(input = "http://service/Database/reportuserRequest", output = "http://service/Database/reportuserResponse")
-    public String reportuser(
-        @WebParam(name = "username", targetNamespace = "")
-        String username);
-
-    /**
-     * 
      * @param phone
      * @param email
      * @param password
@@ -132,93 +51,18 @@ public interface Database {
 
     /**
      * 
-     * @param weekendfee
-     * @param priceperkm
-     * @param rating
-     * @param baserate
      * @param operator
      * @return
-     *     returns java.lang.String
+     *     returns service.Taxioperator
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addoperator", targetNamespace = "http://service/", className = "service.Addoperator")
-    @ResponseWrapper(localName = "addoperatorResponse", targetNamespace = "http://service/", className = "service.AddoperatorResponse")
-    @Action(input = "http://service/Database/addoperatorRequest", output = "http://service/Database/addoperatorResponse")
-    public String addoperator(
+    @RequestWrapper(localName = "getpriceinfoforoperator", targetNamespace = "http://service/", className = "service.Getpriceinfoforoperator")
+    @ResponseWrapper(localName = "getpriceinfoforoperatorResponse", targetNamespace = "http://service/", className = "service.GetpriceinfoforoperatorResponse")
+    @Action(input = "http://service/Database/getpriceinfoforoperatorRequest", output = "http://service/Database/getpriceinfoforoperatorResponse")
+    public Taxioperator getpriceinfoforoperator(
         @WebParam(name = "operator", targetNamespace = "")
-        String operator,
-        @WebParam(name = "baserate", targetNamespace = "")
-        double baserate,
-        @WebParam(name = "priceperkm", targetNamespace = "")
-        double priceperkm,
-        @WebParam(name = "weekendfee", targetNamespace = "")
-        double weekendfee,
-        @WebParam(name = "rating", targetNamespace = "")
-        int rating);
-
-    /**
-     * 
-     * @param price
-     * @param origin
-     * @param customer
-     * @param companyname
-     * @param destination
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addBooking", targetNamespace = "http://service/", className = "service.AddBooking")
-    @ResponseWrapper(localName = "addBookingResponse", targetNamespace = "http://service/", className = "service.AddBookingResponse")
-    @Action(input = "http://service/Database/addBookingRequest", output = "http://service/Database/addBookingResponse")
-    public String addBooking(
-        @WebParam(name = "companyname", targetNamespace = "")
-        String companyname,
-        @WebParam(name = "customer", targetNamespace = "")
-        String customer,
-        @WebParam(name = "origin", targetNamespace = "")
-        String origin,
-        @WebParam(name = "destination", targetNamespace = "")
-        String destination,
-        @WebParam(name = "price", targetNamespace = "")
-        double price);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<service.Clientinfo>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getclients", targetNamespace = "http://service/", className = "service.Getclients")
-    @ResponseWrapper(localName = "getclientsResponse", targetNamespace = "http://service/", className = "service.GetclientsResponse")
-    @Action(input = "http://service/Database/getclientsRequest", output = "http://service/Database/getclientsResponse")
-    public List<Clientinfo> getclients();
-
-    /**
-     * 
-     * @param weekendfee
-     * @param company
-     * @param priceperkm
-     * @param baserate
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "updatePrice", targetNamespace = "http://service/", className = "service.UpdatePrice")
-    @ResponseWrapper(localName = "updatePriceResponse", targetNamespace = "http://service/", className = "service.UpdatePriceResponse")
-    @Action(input = "http://service/Database/updatePriceRequest", output = "http://service/Database/updatePriceResponse")
-    public String updatePrice(
-        @WebParam(name = "company", targetNamespace = "")
-        String company,
-        @WebParam(name = "baserate", targetNamespace = "")
-        double baserate,
-        @WebParam(name = "priceperkm", targetNamespace = "")
-        double priceperkm,
-        @WebParam(name = "weekendfee", targetNamespace = "")
-        double weekendfee);
+        String operator);
 
     /**
      * 
@@ -252,17 +96,179 @@ public interface Database {
 
     /**
      * 
-     * @param operator
      * @return
-     *     returns service.Taxioperator
+     *     returns java.util.List<service.Taxioperator>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getpriceinfoforoperator", targetNamespace = "http://service/", className = "service.Getpriceinfoforoperator")
-    @ResponseWrapper(localName = "getpriceinfoforoperatorResponse", targetNamespace = "http://service/", className = "service.GetpriceinfoforoperatorResponse")
-    @Action(input = "http://service/Database/getpriceinfoforoperatorRequest", output = "http://service/Database/getpriceinfoforoperatorResponse")
-    public Taxioperator getpriceinfoforoperator(
+    @RequestWrapper(localName = "getpriceinfo", targetNamespace = "http://service/", className = "service.Getpriceinfo")
+    @ResponseWrapper(localName = "getpriceinfoResponse", targetNamespace = "http://service/", className = "service.GetpriceinfoResponse")
+    @Action(input = "http://service/Database/getpriceinfoRequest", output = "http://service/Database/getpriceinfoResponse")
+    public List<Taxioperator> getpriceinfo();
+
+    /**
+     * 
+     * @param weekendfee
+     * @param company
+     * @param priceperkm
+     * @param baserate
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "updatePrice", targetNamespace = "http://service/", className = "service.UpdatePrice")
+    @ResponseWrapper(localName = "updatePriceResponse", targetNamespace = "http://service/", className = "service.UpdatePriceResponse")
+    @Action(input = "http://service/Database/updatePriceRequest", output = "http://service/Database/updatePriceResponse")
+    public String updatePrice(
+        @WebParam(name = "company", targetNamespace = "")
+        String company,
+        @WebParam(name = "baserate", targetNamespace = "")
+        double baserate,
+        @WebParam(name = "priceperkm", targetNamespace = "")
+        double priceperkm,
+        @WebParam(name = "weekendfee", targetNamespace = "")
+        double weekendfee);
+
+    /**
+     * 
+     * @param weekendfee
+     * @param priceperkm
+     * @param rating
+     * @param baserate
+     * @param operator
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addoperator", targetNamespace = "http://service/", className = "service.Addoperator")
+    @ResponseWrapper(localName = "addoperatorResponse", targetNamespace = "http://service/", className = "service.AddoperatorResponse")
+    @Action(input = "http://service/Database/addoperatorRequest", output = "http://service/Database/addoperatorResponse")
+    public String addoperator(
         @WebParam(name = "operator", targetNamespace = "")
-        String operator);
+        String operator,
+        @WebParam(name = "baserate", targetNamespace = "")
+        double baserate,
+        @WebParam(name = "priceperkm", targetNamespace = "")
+        double priceperkm,
+        @WebParam(name = "weekendfee", targetNamespace = "")
+        double weekendfee,
+        @WebParam(name = "rating", targetNamespace = "")
+        int rating);
+
+    /**
+     * 
+     * @param reported
+     * @param phone
+     * @param username
+     * @param email
+     * @param password
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addCustomer", targetNamespace = "http://service/", className = "service.AddCustomer")
+    @ResponseWrapper(localName = "addCustomerResponse", targetNamespace = "http://service/", className = "service.AddCustomerResponse")
+    @Action(input = "http://service/Database/addCustomerRequest", output = "http://service/Database/addCustomerResponse")
+    public String addCustomer(
+        @WebParam(name = "username", targetNamespace = "")
+        String username,
+        @WebParam(name = "password", targetNamespace = "")
+        String password,
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "phone", targetNamespace = "")
+        String phone,
+        @WebParam(name = "reported", targetNamespace = "")
+        boolean reported);
+
+    /**
+     * 
+     * @param time
+     * @param price
+     * @param origin
+     * @param date
+     * @param customer
+     * @param companyname
+     * @param destination
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addBooking", targetNamespace = "http://service/", className = "service.AddBooking")
+    @ResponseWrapper(localName = "addBookingResponse", targetNamespace = "http://service/", className = "service.AddBookingResponse")
+    @Action(input = "http://service/Database/addBookingRequest", output = "http://service/Database/addBookingResponse")
+    public String addBooking(
+        @WebParam(name = "companyname", targetNamespace = "")
+        String companyname,
+        @WebParam(name = "customer", targetNamespace = "")
+        String customer,
+        @WebParam(name = "origin", targetNamespace = "")
+        String origin,
+        @WebParam(name = "destination", targetNamespace = "")
+        String destination,
+        @WebParam(name = "price", targetNamespace = "")
+        double price,
+        @WebParam(name = "date", targetNamespace = "")
+        String date,
+        @WebParam(name = "time", targetNamespace = "")
+        String time);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<service.Taxiinfo>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getOperators", targetNamespace = "http://service/", className = "service.GetOperators")
+    @ResponseWrapper(localName = "getOperatorsResponse", targetNamespace = "http://service/", className = "service.GetOperatorsResponse")
+    @Action(input = "http://service/Database/getOperatorsRequest", output = "http://service/Database/getOperatorsResponse")
+    public List<Taxiinfo> getOperators();
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<service.Clientinfo>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getclients", targetNamespace = "http://service/", className = "service.Getclients")
+    @ResponseWrapper(localName = "getclientsResponse", targetNamespace = "http://service/", className = "service.GetclientsResponse")
+    @Action(input = "http://service/Database/getclientsRequest", output = "http://service/Database/getclientsResponse")
+    public List<Clientinfo> getclients();
+
+    /**
+     * 
+     * @param username
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "reportuser", targetNamespace = "http://service/", className = "service.Reportuser")
+    @ResponseWrapper(localName = "reportuserResponse", targetNamespace = "http://service/", className = "service.ReportuserResponse")
+    @Action(input = "http://service/Database/reportuserRequest", output = "http://service/Database/reportuserResponse")
+    public String reportuser(
+        @WebParam(name = "username", targetNamespace = "")
+        String username);
+
+    /**
+     * 
+     * @param username
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "removeuser", targetNamespace = "http://service/", className = "service.Removeuser")
+    @ResponseWrapper(localName = "removeuserResponse", targetNamespace = "http://service/", className = "service.RemoveuserResponse")
+    @Action(input = "http://service/Database/removeuserRequest", output = "http://service/Database/removeuserResponse")
+    public String removeuser(
+        @WebParam(name = "username", targetNamespace = "")
+        String username);
 
 }

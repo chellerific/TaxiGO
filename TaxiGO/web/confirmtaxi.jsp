@@ -58,6 +58,8 @@
 
             </table>
             <input type='submit' name="click" value="Confirm Booking Plan" />
+            <input type="text" name="date" placeholder="YYYY-MM-DD"/>
+            <input type="text" name="time" placeholder="HH:MM:SS"/>
         </form>
     </body>
 </html>
