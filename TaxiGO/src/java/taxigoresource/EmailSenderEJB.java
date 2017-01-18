@@ -7,6 +7,7 @@ package taxigoresource;
 
 import java.util.List;
 import java.util.Properties;
+import javax.ejb.Stateless;
 import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -21,7 +22,19 @@ import javax.mail.internet.MimeMessage;
  *
  * @author Sara
  */
-public class EmailSender {
+@Stateless
+public class EmailSenderEJB {
+    
+    
+    public void setRecipientsAndSendEmail(List <String> addresses, String title, String message) {
+        List <String> sendTo = addresses;
+        
+        int size = sendTo.size();
+        for (int i = 0; i < size; i++) {
+            sendEmail(sendTo.get(i), title, message);
+        }
+    }
+    
     
     public void sendEmail(String sendTo, String title, String message) {
         try {
@@ -77,5 +90,4 @@ public class EmailSender {
             return authentication;
         }
     }
-    
 }

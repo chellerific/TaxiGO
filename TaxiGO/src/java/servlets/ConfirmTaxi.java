@@ -52,8 +52,8 @@ public class ConfirmTaxi extends HttpServlet {
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/confirmtaxi.jsp");
         String clickBtn = (String) request.getParameter("click");
-        origin = (String) sc.getAttribute("originStr");
-        destination = (String) sc.getAttribute("destStr");
+        origin = (String) request.getSession().getAttribute("originStr");
+        destination = (String) request.getSession().getAttribute("destStr");
         String tempDist = request.getParameter("distance");
 
         List<Taxioperator> prices = getpriceinfo();
@@ -94,7 +94,7 @@ public class ConfirmTaxi extends HttpServlet {
                 System.out.println("Price / km: " + pricePerKm);
                 totalPrice
                         = Double.parseDouble(new DecimalFormat("##.##").format(baseRate
-                                        + (pricePerKm * distance)));
+                                        + (pricePerKm * distance)).replace(",", "."));
                 priceArr.add(totalPrice);
                 System.out.println("Total Price: " + totalPrice);
             }

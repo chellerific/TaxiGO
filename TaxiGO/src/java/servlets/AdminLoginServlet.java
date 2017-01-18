@@ -6,7 +6,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -17,11 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
 import service.Admininfo;
-import service.Bookings;
 import service.Clientinfo;
 import service.Database_Service;
 import service.Taxiinfo;
-import service.Taxioperator;
 
 /**
  *
@@ -68,7 +65,6 @@ public class AdminLoginServlet extends HttpServlet {
             request.getSession().setAttribute("reported", false);
         }
         
-
         List<Admininfo> admins = getadmininfo();
         int s = admins.size();
         String tempUser = null;
@@ -101,8 +97,6 @@ public class AdminLoginServlet extends HttpServlet {
             for (int i = 0; i < infosize; i++) {
                 request.setAttribute("taxi" + i, infos.get(i));
             }
-            
-            request.getRequestDispatcher("adminmain.jsp").forward(request, response);
             
             request.getSession().setAttribute("username", username);
             request.getSession().setAttribute("password", password);

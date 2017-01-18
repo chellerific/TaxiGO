@@ -6,8 +6,9 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
 import service.Clientinfo;
 import service.Database_Service;
-import taxigoresource.EmailSender;
+import taxigoresource.EmailSenderEJB;
 
 /**
  *
@@ -25,6 +26,8 @@ import taxigoresource.EmailSender;
  */
 @WebServlet (name = "AdminSendEmailServlet", urlPatterns = {"/AdminSendEmailServlet"})
 public class AdminSendEmailServlet extends HttpServlet {
+    @EJB
+    private EmailSenderEJB emailSenderEJB;
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl")
     private Database_Service service;
 
@@ -39,18 +42,19 @@ public class AdminSendEmailServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        EmailSender send = new EmailSender();
         String title = request.getParameter("title");
         String message = request.getParameter("message");
         List <Clientinfo> clients = getclients();
         
-        String receiver = "";
+        List <String> receiver = new ArrayList<>();
         
         int size = clients.size();
         for (int i = 0; i < size; i++) {
-            receiver = clients.get(i).getEmail();
-            send.sendEmail(receiver, title, message);
+            receiver.add(clients.get(i).getEmail());
         }
+        
+        emailSenderEJB.setRecipientsAndSendEmail(receiver, title, message);
+        
         ServletContext sc = getServletContext();
         sc.getRequestDispatcher("/updated.jsp").forward(request, response);
     }
