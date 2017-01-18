@@ -36,10 +36,9 @@ public class GuestServlet extends HttpServlet {
         request.setAttribute("destLoc", dest);
 
         if (clickBtn.equals("Book a Travel")) {
-
-            request.getRequestDispatcher("guesttravelresults.jsp").forward(request, response);
             request.getSession().setAttribute("destStr", dest);
             request.getSession().setAttribute("originStr", origin);
+            request.getRequestDispatcher("guesttravelresults.jsp").forward(request, response);
         }
     }
 

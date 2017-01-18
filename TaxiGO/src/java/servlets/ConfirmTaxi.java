@@ -76,6 +76,8 @@ public class ConfirmTaxi extends HttpServlet {
             System.out.println("Destination: " + destination);
 
             System.out.println("Booking saved: " + booking);
+            request.getSession().removeAttribute("originStr");
+            request.getSession().removeAttribute("destStr");
         } else {
 
             String parsedDist = parseDist(tempDist);
