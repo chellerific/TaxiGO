@@ -30,6 +30,7 @@ public class CustomerLogIn extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl")
     private Database_Service service;
+    private boolean isReported;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,7 +38,7 @@ public class CustomerLogIn extends HttpServlet {
         String username = request.getParameter("uname");
 //        String password = request.getParameter("pass");
         String clickBtn = request.getParameter("click");
-        
+
         HashMD5 md5 = new HashMD5();
         String password = md5.md5(request.getParameter("pass"));
 
@@ -54,6 +55,7 @@ public class CustomerLogIn extends HttpServlet {
                 pass = customers.get(i).getPassword();
                 if (uname.equalsIgnoreCase(username)
                         && pass.equals(password)) {
+                    isReported = customers.get(i).isReported();
 
                     found = true;
                     break;
@@ -63,6 +65,8 @@ public class CustomerLogIn extends HttpServlet {
             if (found) {
                 request.getSession().setAttribute("uname", username);
                 request.getSession().setAttribute("pass", password);
+                request.getSession().setAttribute("booker", username);
+                request.getSession().setAttribute("status", isReported);
                 request.getRequestDispatcher("customermain.jsp").forward(request, response);
             } else {
                 sc = getServletContext();

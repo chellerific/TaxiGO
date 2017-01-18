@@ -16,7 +16,10 @@
         <title>Booking - Taxi GO</title>
     </head>
     <body>
-        <h1>List of Taxi Operators</h1>
+        <br>
+        <br>
+        <br>
+    <center><h1><font face="Trebuchet MS">List of Taxi Operators</h1>
 
         <form action="ConfirmTaxi" method="POST">
             <table border="2">
@@ -26,7 +29,7 @@
                     <td>Price Per Kilometer</td>
                     <td>Weekend Fee</td>
                     <td>Rating</td>
-                    <td>Total Price</td>
+                    <td>Total Price (SEK)</td>
                 </tr>
                 <%
                     Taxioperator taxi = (Taxioperator) request.getAttribute("price0");
@@ -57,7 +60,8 @@
 
 
             </table>
-            <input type='submit' name="click" value="Confirm Booking Plan" />
+            <br>
+            <input type='submit' name="click" value="Confirm Booking Plan" style = "height:30px; width:70px; font-size: 16px"/>
             <input type="text" name="date" placeholder="YYYY-MM-DD"/>
             <input type="text" name="time" placeholder="HH:MM:SS"/>
         </form>

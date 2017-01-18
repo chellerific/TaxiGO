@@ -50,18 +50,15 @@ public class ChooseUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        String guestBtn = request.getParameter("guest");
-//        String customerBtn = request.getParameter("customer");
-//        String taxiBtn = request.getParameter("taxiOperator");
-//        String adminBtn = request.getParameter("admin");
         String clickBtn = request.getParameter("click");
         if (clickBtn.equals("Guest")) {
+            request.getSession().setAttribute("booker", "guest");
             request.getRequestDispatcher("guestbooking.jsp").forward(request, response);
 
         } else if (clickBtn.equals("Customer")) {
             request.getRequestDispatcher("customerlogin.jsp").forward(request, response);
 
-        } else if (clickBtn.equals("TaxiOperator")) {
+        } else if (clickBtn.equals("Taxi Operator")) {
             request.getRequestDispatcher("operatorlogin.jsp").forward(request, response);
         } else if (clickBtn.equals("Administrator")) {
             request.getRequestDispatcher("adminlogin.jsp").forward(request, response);

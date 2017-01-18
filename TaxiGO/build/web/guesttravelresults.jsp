@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Guest Booking</title>
+        title>Guest Booking - Taxi GO</title>
     </head>
 
 
@@ -46,16 +46,19 @@
 
     </script>
     <body>
-
+        <br>
+        <br>
+        <br>
+    <center>
         <form method="POST" action="ConfirmTaxi"> 
-            <h1>Travel Results</h1>
+            <h1><font face="Trebuchet MS">Travel Results</h1>
             <br>
-            <br><br>
-            Origin: <input id="orig" type="text" name="origin" style="width:35em"><br><br>
-            Destination: <input id="dest" type="text" name="destination" style="width:35em"><br><br>
-            Distance : <input id="dist" type="text" name="distance" style="width:35em">
-            <input type="submit" name="click" value="Confirm Your Booking" /> 
+            Origin: <input id="orig" type="text" name="origin" style="height:50px; width:500px; font-size: 18px"><br><br>
+            Destination: <input id="dest" type="text" name="destination" style="height:50px; width:500px; font-size: 18px"><br><br>
+            Distance : <input id="dist" type="text" name="distance" style="height:50px; width:500px; font-size: 18px"><br>
+            <br>
+            <input type="submit" name="click" value="Confirm Your Booking" style="height:50px; width:250px; font-size: 18px"/> 
         </form>
-
+    </center>
     </body>
 </html>

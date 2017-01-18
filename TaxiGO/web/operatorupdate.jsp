@@ -12,15 +12,22 @@
         <title>Operator Edit - Taxi GO</title>
     </head>
     <body>
-        <b>You can update your prices below.</b>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    <center><h2><b><font face="Trebuchet MS">You can update your prices below.</font></b></h2>
         <form method="POST" action="OperatorServlet">
+            <font face="Trebuchet MS">
             Base fare:
             <input type="number" name="number1"><br>
             Price per km: 
             <input type="number" name="number2"><br>
             Weekend fee: 
             <input type="number" name="number3"><br>
-            <input type="submit" value="Update" name="function" />
-        </form>
+            <br>
+            <input type="submit" value="Update" name="function" style = "height:30px; width:70px; font-size: 16px"/>
+        </form></center>
     </body>
 </html>

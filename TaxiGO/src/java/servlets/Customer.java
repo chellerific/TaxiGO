@@ -29,15 +29,18 @@ public class Customer extends HttpServlet {
         origin = request.getParameter("origin");
         dest = request.getParameter("dest");
         String clickBtn = request.getParameter("click");
+        String customerName = (String) request.getSession().getAttribute("booker");
 
         request.setAttribute("custOriginLoc", origin);
         request.setAttribute("custDestLoc", dest);
-        
-        request.getSession().setAttribute("originStr", origin);
-        request.getSession().setAttribute("destStr", dest);
 
         if (clickBtn.equals("Book a Travel")) {
+            request.getSession().setAttribute("originStr", origin);
+            request.getSession().setAttribute("destStr", dest);
+            request.getSession().setAttribute("booker", customerName);
+
             request.getRequestDispatcher("customertravelresults.jsp").forward(request, response);
+
         }
     }
 

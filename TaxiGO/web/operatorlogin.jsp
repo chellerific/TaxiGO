@@ -9,23 +9,29 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Taxi GO</title>
+        <title>Operator - Taxi GO</title>
     </head>
     <body>
-        <h1>Welcome, Operator!</h1>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    <center><h1><font face="Trebuchet MS">Welcome, Operator!</font></h1>
         <form method="POST" action="TaxiGoServlet"> 
-            <b>Please enter your username and password to log in: </b><br>
-            Username: <br>
-            <input type="text" name="username"><br>
-            Password: <br>
-            <input type="password" name="password"><br>
-            <input type="submit" value="Login" name="function" /><br>
+            <h2><font face="Trebuchet MS"><b>Please enter your username and password to log in: </b></h2><br>
+            <b>Username: </b><br>
+            <input type="text" name="username" style="height:25px; width:300px; font-size: 18px"><br>
+            <b>Password: </b><br>
+            <input type="password" name="password" style="height:25px; width:300px; font-size: 18px"><br>
+            <br>
+            <input type="submit" value="Login" name="function" style = "height:30px; width:70px; font-size: 16px"/><br>
             <% String err = (String)request.getAttribute("error");
                 if (err == null) {
                     err = "";
                 }
             %>
             <b> <%=err%> </b>
-        </form>
+        </form></center>
     </body>
 </html>

@@ -9,11 +9,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Taxi GO - Registration</title>
+        <title>Registration - Taxi GO</title>
     </head>
-    <body>
-        <h1>Your registration is complete.</h1>
+    <body><center>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1><font face="Trebuchet MS">Your registration is complete.</font></h1>
         <form action="customerlogin.jsp" method="GET">
-            <input type='submit' name="click" value="Log In" /></form>
-    </body>
+            <input type='submit' name="click" value="Log In" style="height:50px; width:130px; font-size: 18px"/></form>
+    </center></body>
 </html>

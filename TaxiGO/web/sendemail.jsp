@@ -11,17 +11,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Administration - Taxi GO</title>
     </head>
-    <body>
+    <body><center>
+        <br>
+        <br>
+        <br>
         <form action="AdminSendEmailServlet" method="POST">
-            <b>You can send email to customers below.</b><br><br>
-            Subject:<br>
-            <input type="text" name="title" autofocus="true"><br>
-            Message: <br>
+            <h2><font face="Trebuchet MS"><b>You can send email to customers below.</b></h2><br><br>
+            <b>Subject:</b><br>
+            <input type="text" name="title" autofocus="true" style = "width: 500px"><br>
+            <b>Message: </b><br>
             
             <textarea name="message" cols="100" rows="20">
                 
             </textarea><br>
+            <br>
             <input type="submit" name="button" value="Send">
-        </form>
+        </form></center>
     </body>
 </html>

@@ -15,8 +15,12 @@
         <title>Operator - Taxi GO</title>
     </head>
     <body>
-        <h1>Welcome!</h1>
-        <b>Bookings Done in Your Company</b>
+        <br>
+        <br>
+        <br>
+        <br>
+         <center>
+             <h2><font face="Trebuchet MS"><b>Bookings Done in Your Company</b></h2>
         
         <form method="POST" action="TaxiGoServlet">
             <table border="2">
@@ -54,13 +58,14 @@
             }
             %>
         </table>
+        <br>
         <input type="submit" value="Report" name="function">
         
         </form>
         <br>
         
         <br>
-        <b>Your Price Information</b>
+        <h2><b>Your Price Information</b></h2>
         <table border="2">
             <tr>
                 <td>Base rate</td>
@@ -79,10 +84,11 @@
             </tr>
 
         </table>
+            <br>
         <b>If you want to edit your price information, press the button below.</b>
         <form method="POST" action="operatorupdate.jsp"> 
             <input type="submit" value="Edit" name="function" />
-        </form>
+        </form></center>
         
     </body>
 </html>

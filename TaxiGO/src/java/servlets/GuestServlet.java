@@ -31,6 +31,7 @@ public class GuestServlet extends HttpServlet {
         origin = request.getParameter("origin");
         dest = request.getParameter("dest");
         String clickBtn = request.getParameter("click");
+        String guest = (String) request.getSession().getAttribute("booker");
 
         request.setAttribute("originLoc", origin);
         request.setAttribute("destLoc", dest);
@@ -38,6 +39,7 @@ public class GuestServlet extends HttpServlet {
         if (clickBtn.equals("Book a Travel")) {
             request.getSession().setAttribute("destStr", dest);
             request.getSession().setAttribute("originStr", origin);
+            request.getSession().setAttribute("booker", guest);
             request.getRequestDispatcher("guesttravelresults.jsp").forward(request, response);
         }
     }

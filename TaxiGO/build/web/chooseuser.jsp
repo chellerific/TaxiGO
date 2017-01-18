@@ -11,14 +11,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home - Taxi GO</title>
     </head>
-    <body>
-        <h1>Welcome to Taxi GO! Book your travel now.</h1>
+    <body><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    <center><h1><font face="Trebuchet MS">Welcome to Taxi GO! Book your travel now.</h1>
         <h2>How would you like to log in?</h2>
         <form action="ChooseUser" method="POST">
-            <input type='submit' name="click" value="Guest" />
-            <input type='submit' name="click" value="Customer" />
-            <input type='submit' name="click" value="TaxiOperator" />
-            <input type='submit' name="click" value="Administrator" />
-        </form>
-    </body>
+            <input type='submit' name="click" value="Guest" style="height:50px; width:130px; font-size: 18px" />
+            <input type='submit' name="click" value="Customer" style="height:50px; width:130px; font-size: 18px" />
+            <input type='submit' name="click" value="Taxi Operator" style="height:50px; width:130px; font-size: 18px" />
+            <input type='submit' name="click" value="Administrator" style="height:50px; width:130px; font-size: 18px" />
+
+        </form></center>
+</body>
 </html>
