@@ -7,7 +7,6 @@ package taxigoresource;
 
 import java.text.DecimalFormat;
 import javax.ejb.Stateless;
-import service.Taxiinfo;
 import service.Taxioperator;
 
 /**
@@ -16,9 +15,7 @@ import service.Taxioperator;
  */
 @Stateless
 public class CalculatePriceEJB {
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    
     public double calculatePrice(Taxioperator taxi, double distance) {
         double baseRate = taxi.getBaserate();
         double pricePerKm = taxi.getPriceperkm();

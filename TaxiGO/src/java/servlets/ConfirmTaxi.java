@@ -6,16 +6,8 @@
 package servlets;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -25,7 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
-import service.Bookings;
 import service.Clientinfo;
 import service.Database_Service;
 import service.Taxioperator;
@@ -38,6 +29,7 @@ import taxigoresource.EmailSenderEJB;
  */
 @WebServlet(name = "ConfirmTaxi", urlPatterns = {"/ConfirmTaxi"})
 public class ConfirmTaxi extends HttpServlet {
+
     @EJB
     private CalculatePriceEJB calculatePriceEJB;
 
@@ -49,6 +41,7 @@ public class ConfirmTaxi extends HttpServlet {
     private double distance;
     private String origin;
     private String destination;
+    private ArrayList<Double> priceArr;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -76,16 +69,17 @@ public class ConfirmTaxi extends HttpServlet {
 
         if (clickBtn.equals("Confirm Booking Plan")) {
             String booker = (String) request.getSession().getAttribute("booker");
+
             if (booker.equals("guest")) {
                 String chosen = request.getParameter("chosen");
-                String [] temp = chosen.split(" ");
+                String[] temp = chosen.split(" ");
                 chosen = temp[0];
                 totalPrice = Double.parseDouble(temp[1]);
-                
+
                 System.out.println("Taxi Operator: " + chosen);
                 String date = request.getParameter("date");
                 String time = request.getParameter("time");
-                
+
                 String booking = addBooking(chosen, "guest", origin, destination, totalPrice, date, time);
                 System.out.println("Origin: " + origin);
                 System.out.println("Destination: " + destination);
@@ -103,10 +97,10 @@ public class ConfirmTaxi extends HttpServlet {
             } else {
                 String chosen = request.getParameter("chosen");
                 String customer = (String) request.getSession().getAttribute("booker");
-                String [] temp = chosen.split(" ");
+                String[] temp = chosen.split(" ");
                 chosen = temp[0];
                 totalPrice = Double.parseDouble(temp[1]);
-                
+
                 System.out.println("Taxi Operator: " + chosen);
                 String date = request.getParameter("date");
                 String time = request.getParameter("time");
@@ -124,11 +118,11 @@ public class ConfirmTaxi extends HttpServlet {
                 request.getRequestDispatcher("receipt.jsp").forward(request, response);
             }
         } else {
-            
+
             String parsedDist = parseDist(tempDist);
             distance = Double.parseDouble(parsedDist);
-            
-            ArrayList<Double> priceArr = new ArrayList<>();
+
+            priceArr = new ArrayList<>();
 
             for (int i = 0; i < size; i++) {
                 priceArr.add(calculatePriceEJB.calculatePrice(prices.get(i), distance));
@@ -139,7 +133,7 @@ public class ConfirmTaxi extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

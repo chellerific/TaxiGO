@@ -17,6 +17,8 @@ import java.util.logging.Logger;
  */
 public class HashMD5 {
 
+    //This method is borrowed from tutorial at http://www.mkyong.com/java/java-md5-hashing-example/
+    
     public static String md5(String password) {
         StringBuffer sb = null;
         try {
@@ -24,8 +26,7 @@ public class HashMD5 {
             md.update(password.getBytes());
             
             byte byteData[] = md.digest();
-            
-            //convert the byte to hex format method 1
+      
             sb = new StringBuffer();
             for (int i = 0; i < byteData.length; i++) {
                 sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));

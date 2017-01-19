@@ -19,18 +19,20 @@
         <br>
     <center><h1><font face="Trebuchet MS">Welcome Customer!</font></h1>
         <form action="CustomerLogIn" method="GET">
-            <input type="text" placeholder="username" name="uname" style="height:25px; width:300px; font-size: 18px"/><br>
+            <input type="text" placeholder="username" name="uname" required style="height:25px; width:300px; font-size: 18px"/><br>
             <br>
-            <input type="password" placeholder="password" name="pass" style="height:25px; width:300px; font-size: 18px" /><br>
+            <input type="password" placeholder="password" name="pass" required style="height:25px; width:300px; font-size: 18px" /><br>
             <br>
-            <input type='submit' name="click" value="Log In" style = "height:30px; width:100px; font-size: 16px" /><br>
+            <input type='submit' name="click" value="Log In" required style = "height:30px; width:100px; font-size: 16px" /><br>
             <br>
-            <input type='submit' name="click" value="Register" style = "height:30px; width:100px; font-size: 16px"/>
             <% String err = (String) request.getAttribute("error");
                 if (err == null) {
                     err = "";
                 }
             %>
-            <b> <%=err%> </b></form></center>
+            <b> <%=err%> </b></form>
+        <form action="CustomerLogIn" method="GET">
+            <input type='submit' name="click" value="Register" style = "height:30px; width:100px; font-size: 16px"/>
+        </form></center>
 </body>
 </html>

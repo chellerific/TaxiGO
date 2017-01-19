@@ -53,11 +53,11 @@
         <form method="POST" action="ConfirmTaxi"> 
             <h1><font face="Trebuchet MS">Travel Results</h1>
             <br>
-            Origin: <input id="orig" type="text" name="origin" style="height:50px; width:500px; font-size: 18px"><br><br>
-            Destination: <input id="dest" type="text" name="destination" style="height:50px; width:500px; font-size: 18px"><br><br>
-            Distance : <input id="dist" type="text" name="distance" style="height:50px; width:500px; font-size: 18px"><br>
+            Origin: <input id="orig" type="text" name="origin" readonly="true" style="height:50px; width:500px; font-size: 18px"><br><br>
+            Destination: <input id="dest" type="text" name="destination" readonly="true" style="height:50px; width:500px; font-size: 18px"><br><br>
+            Distance : <input id="dist" type="text" name="distance" readonly="true" style="height:50px; width:500px; font-size: 18px"><br>
             <br>
-            <input type="submit" name="click" value="Confirm Your Booking" style="height:50px; width:250px; font-size: 18px"/> 
+            <input type="submit" name="click" value="Confirm Your Booking" readonly="true" style="height:50px; width:250px; font-size: 18px"/> 
         </form>
     </center>
     </body>

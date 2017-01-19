@@ -35,12 +35,7 @@ public class CustomerLogIn extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("uname");
-//        String password = request.getParameter("pass");
         String clickBtn = request.getParameter("click");
-
-        HashMD5 md5 = new HashMD5();
-        String password = md5.md5(request.getParameter("pass"));
 
         List<Clientinfo> customers = getCustomer();
         boolean found = false;
@@ -50,6 +45,9 @@ public class CustomerLogIn extends HttpServlet {
         String pass;
 
         if (clickBtn.equals("Log In")) {
+            String username = request.getParameter("uname");
+            String password = HashMD5.md5(request.getParameter("pass"));
+            
             for (int i = 0; i < customers.size(); i++) {
                 uname = customers.get(i).getUsername();
                 pass = customers.get(i).getPassword();

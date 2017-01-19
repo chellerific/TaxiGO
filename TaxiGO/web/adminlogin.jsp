@@ -23,10 +23,10 @@
 
             <h2><font face="Trebuchet MS"><b>Please enter your username and password to log in: </b></h2><br>
             <b>Username: </b><br>
-            <input type="text" name="username" style="height:25px; width:300px; font-size: 18px"><br>
+            <input type="text" name="username" required style="height:25px; width:300px; font-size: 18px"><br>
             <br>
             <b>Password: </b><br>
-            <input type="password" name="password" style="height:25px; width:300px; font-size: 18px"><br>
+            <input type="password" name="password" required style="height:25px; width:300px; font-size: 18px"><br>
             <br>
             <input type="submit" value="Log In" name="function" style = "height:30px; width:70px; font-size: 16px"/><br>
             <% String err = (String) request.getAttribute("error");

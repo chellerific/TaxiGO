@@ -29,6 +29,9 @@ public class TaxiGoServlet extends HttpServlet {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl")
     private Database_Service service;
 
+    private String username;
+    private String password;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,8 +47,6 @@ public class TaxiGoServlet extends HttpServlet {
         RequestDispatcher rd = null;
         boolean found = false;
         String function = (String) request.getParameter("function");
-        String username = "";
-        String password = "";
         HashMD5 md5 = new HashMD5();
 
         if (function.equals("Report")) {
@@ -53,17 +54,17 @@ public class TaxiGoServlet extends HttpServlet {
             System.out.println("Checkbox value = " + name);
             String res = reportuser(name);
             System.out.println("The reporting is: " + res);
-            username = (String)request.getSession().getAttribute("username");
-            password = (String)request.getSession().getAttribute("password");
+            username = (String) request.getSession().getAttribute("username");
+            password = (String) request.getSession().getAttribute("password");
             System.out.println("User after reporting: " + username);
             System.out.println("Pass after reporting: " + password);
             request.getSession().setAttribute("reported", true);
+
         } else {
             username = request.getParameter("username");
             password = md5.md5(request.getParameter("password"));
             request.getSession().setAttribute("reported", false);
         }
-        
 
         List<Taxiinfo> taxis = getOperators();
         int s = taxis.size();
@@ -92,7 +93,7 @@ public class TaxiGoServlet extends HttpServlet {
 
             Taxioperator prices = getpriceinfoforoperator(username);
             request.setAttribute("price", prices);
-            
+
             request.getSession().setAttribute("username", username);
             request.getSession().setAttribute("password", password);
 

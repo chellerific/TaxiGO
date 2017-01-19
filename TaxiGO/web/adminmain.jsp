@@ -37,7 +37,7 @@
                     <td><%=client.getEmail()%></td>
                     <td><%=client.getPhone()%></td>
                     <td><%=client.isReported()%></td>
-                    <td><input type="checkbox" name="chosen"value= "<%=client.getUsername()%>" </td>
+                    <td><input type="radio" name="chosen"value= "<%=client.getUsername()%>" required </td>
 
                 </tr>
                 <%
@@ -47,6 +47,13 @@
                     }
                 %>
             </table>
+            <br>
+            <% String err = (String) request.getAttribute("error");
+                if (err == null) {
+                    err = "";
+                }
+            %>
+            <b> <%=err%> </b>
             <br>
             <input type="submit" value="Remove" name="function"> 
         </form> <br><br>

@@ -18,10 +18,10 @@
         <form action="AdminSendEmailServlet" method="POST">
             <h2><font face="Trebuchet MS"><b>You can send email to customers below.</b></h2><br><br>
             <b>Subject:</b><br>
-            <input type="text" name="title" autofocus="true" style = "width: 500px"><br>
+            <input type="text" name="title" autofocus="true" required style = "width: 500px"><br>
             <b>Message: </b><br>
             
-            <textarea name="message" cols="100" rows="20">
+            <textarea name="message" required cols="100" rows="20">
                 
             </textarea><br>
             <br>

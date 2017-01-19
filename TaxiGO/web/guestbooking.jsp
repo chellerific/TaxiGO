@@ -18,9 +18,9 @@
         <br><center>
             <h1><font face="Trebuchet MS">Welcome Guest. Choose your travel.</font></h1>
             <form action="Guest" method="GET">
-                <input type="text" placeholder="Your location.." name="origin" style="height:50px; width:500px; font-size: 18px"/><br>
+                <input type="text" placeholder="Your location.." name="origin" required style="height:50px; width:500px; font-size: 18px"/><br>
                 <br>
-                <input type="text" placeholder="Your destination.." name="dest" style="height:50px; width:500px; font-size: 18px"/><br>
+                <input type="text" placeholder="Your destination.." name="dest" required style="height:50px; width:500px; font-size: 18px"/><br>
                 <br>
                 <input type='submit' name="click" value="Book a Travel" style="height:50px; width:130px; font-size: 18px"/> <br>
             </form></center>

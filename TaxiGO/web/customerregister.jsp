@@ -18,18 +18,25 @@
     <center><h1><font face="Trebuchet MS">With a premium account, you can get some of Taxi GO's special offers.</font></h1>
         <form method="POST" action="CustomerRegister">
             <font face="Trebuchet MS"><b>Username:</b>
-            <input type="text" name="uname" style="height:25px; width:300px; font-size: 18px"><br>
+            <input type="text" name="uname" required style="height:25px; width:300px; font-size: 18px"><br>
             <br>
             <b>Password:</b>
-            <input type="password" name="pass" style="height:25px; width:300px; font-size: 18px"><br>
+            <input type="password" name="pass" required style="height:25px; width:300px; font-size: 18px"><br>
             <br>
             <b>Email:</b> 
-            <input type="text" name="email" style="height:25px; width:300px; font-size: 18px"><br>
+            <input type="email" name="email" required style="height:25px; width:300px; font-size: 18px"><br>
             <br>
             <b>Phone:</b>
-            <input type="text" name="phone" style="height:25px; width:300px; font-size: 18px"><br>
+            <input type="number" name="phone" required style="height:25px; width:300px; font-size: 18px"><br>
             <br>
-            <input type="submit" value="Register" name="click" style = "height:30px; width:100px; font-size: 16px" />
-        </form></center>
+            <input type="submit" value="Register" name="click" required style = "height:30px; width:100px; font-size: 16px" />
+        </form> <br>
+        <% String err = (String) request.getAttribute("error");
+                if (err == null) {
+                    err = "";
+                }
+            %>
+            <b> <%=err%> </b>
+        </center>
     </body>
 </html>

@@ -36,16 +36,23 @@
             <input type="number" name="number5"><br>
             <br>
             Email:
-            <input type="text" name="number6"><br>
+            <input type="email" name="number6"><br>
             <br>
             Phone:
-            <input type="text" name="number7"><br>
+            <input type="number" name="number7"><br>
             <br>
             Password:
             <input type="password" name="number8"><br>
             <br>
             
             <input type="submit" value="Update" name="function" style = "height:30px; width:70px; font-size: 16px" />
-        </form></center>
+        </form> <br>
+        <% String err = (String) request.getAttribute("error");
+                if (err == null) {
+                    err = "";
+                }
+            %>
+            <b> <%=err%> </b>
+        </center>
     </body>
 </html>

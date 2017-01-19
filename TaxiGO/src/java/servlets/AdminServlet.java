@@ -6,6 +6,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,16 +15,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
+import service.Clientinfo;
 import service.Database_Service;
+import service.Taxiinfo;
 import taxigoresource.HashMD5;
 
 /**
  *
  * @author Sara
  */
-
 @WebServlet(name = "AdminServlet", urlPatterns = {"/AdminServlet"})
 public class AdminServlet extends HttpServlet {
+
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl")
     private Database_Service service;
 
@@ -38,43 +41,59 @@ public class AdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HashMD5 md5 = new HashMD5();
-        
+        List<Taxiinfo> taxis = getOperators();
+        boolean isFree = true;
         String name = request.getParameter("number1");
         String baseRate = request.getParameter("number2");
         String pricePerKm = request.getParameter("number3");
         String weekendFee = request.getParameter("number4");
         String rating = request.getParameter("number5");
-        
+
         String email = request.getParameter("number6");
         String phone = request.getParameter("number7");
-        String password = md5.md5(request.getParameter("number8"));
-    
-        double base = 0;
-        double perkm = 0;
-        double wknd = 0;
-        int rate = 0;
-        
-        try {
-            base = Double.parseDouble(baseRate);
-            perkm = Double.parseDouble(pricePerKm);
-            wknd = Double.parseDouble(weekendFee);
-            rate = Integer.parseInt(rating);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        
-        String result = addoperator(name, base, perkm, wknd, rate);
-        System.out.println("Adding taxi: " + result);
-        String res = addoperatorlogin(name, password, email, phone);
-        System.out.println("Adding user: " + res);
-        
-        ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/updated.jsp");
+        String password = HashMD5.md5(request.getParameter("number8"));
 
-        rd.forward(request, response);
+        String temp;
+
+        for (int i = 0; i < taxis.size(); i++) {
+            temp = taxis.get(i).getUsername();
+            if (temp.equalsIgnoreCase(name)) {
+                isFree = false;
+            }
+        }
+
+        if (isFree) {
+            double base = 0;
+            double perkm = 0;
+            double wknd = 0;
+            int rate = 0;
+
+            try {
+                base = Double.parseDouble(baseRate);
+                perkm = Double.parseDouble(pricePerKm);
+                wknd = Double.parseDouble(weekendFee);
+                rate = Integer.parseInt(rating);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+            String result = addoperator(name, base, perkm, wknd, rate);
+            System.out.println("Adding taxi: " + result);
+            String res = addoperatorlogin(name, password, email, phone);
+            System.out.println("Adding user: " + res);
+
+            ServletContext sc = getServletContext();
+            RequestDispatcher rd = sc.getRequestDispatcher("/updated.jsp");
+
+            rd.forward(request, response);
+        } else {
+            request.setAttribute("error", "Taxi operator already exists");
+            ServletContext sc = getServletContext();
+            RequestDispatcher rd = sc.getRequestDispatcher("/adminaddoperator.jsp");
+
+            rd.forward(request, response);
+        }
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -120,7 +139,7 @@ public class AdminServlet extends HttpServlet {
         // If the calling of port operations may lead to race condition some synchronization is required.
         service = new Database_Service();
         service.Database port = service.getDatabasePort();
-        
+
         return port.addoperator(operator, baserate, priceperkm, weekendfee, rating);
     }
 
@@ -131,6 +150,13 @@ public class AdminServlet extends HttpServlet {
         service.Database port = service.getDatabasePort();
         return port.addoperatorlogin(operator, password, email, phone);
     }
-    
+
+    private java.util.List<service.Taxiinfo> getOperators() {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        service = new Database_Service();
+        service.Database port = service.getDatabasePort();
+        return port.getOperators();
+    }
 
 }

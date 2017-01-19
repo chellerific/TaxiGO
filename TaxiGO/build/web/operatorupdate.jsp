@@ -21,13 +21,13 @@
         <form method="POST" action="OperatorServlet">
             <font face="Trebuchet MS">
             Base fare:
-            <input type="number" name="number1"><br>
+            <input type="number" required name="number1"><br>
             Price per km: 
-            <input type="number" name="number2"><br>
+            <input type="number" required name="number2"><br>
             Weekend fee: 
-            <input type="number" name="number3"><br>
+            <input type="number" required name="number3"><br>
             <br>
-            <input type="submit" value="Update" name="function" style = "height:30px; width:70px; font-size: 16px"/>
+            <input type="submit" value="Update" required name="function" style = "height:30px; width:70px; font-size: 16px"/>
         </form></center>
     </body>
 </html>

@@ -50,7 +50,7 @@
             <td><%=booking.getPrice()%></td>
             <td><%=booking.getDate() %></td>
             <td><%=booking.getTime() %></td>
-            <td><input type="checkbox" name="chosen"value= "<%=booking.getCustomer()%>" </td>
+            <td><input type="radio" name="chosen"value= "<%=booking.getCustomer()%>" required </td>
             <td><%=request.getSession().getAttribute("reported")%></td>
             </tr>
             <%

@@ -6,12 +6,14 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
+import service.Clientinfo;
 import service.Database_Service;
 import taxigoresource.HashMD5;
 
@@ -36,19 +38,31 @@ public class CustomerRegister extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HashMD5 md5 = new HashMD5();
+        List <Clientinfo> customers = getclients();
+        boolean isFree = true;
 
         String username = request.getParameter("uname");
-        String password = md5.md5(request.getParameter("pass"));
+        String password = HashMD5.md5(request.getParameter("pass"));
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
+        String temp = "";
+        
+        for (int i = 0; i < customers.size(); i++) {
+            temp = customers.get(i).getUsername();
+            if (temp.equalsIgnoreCase(username)) {
+                isFree = false;
+            } 
+        }
 
         String clickBtn = request.getParameter("click");
 
-        if (clickBtn.equals("Register")) {
+        if (clickBtn.equals("Register") && isFree == true) {
             String result = addCustomer(username, password, email, phone, false);
             System.out.println("Adding customer: " + result);
             request.getRequestDispatcher("confirmregister.jsp").forward(request, response);
+        } else {
+            request.setAttribute("error", "username already taken!");
+            request.getRequestDispatcher("customerregister.jsp").forward(request, response); 
         }
 
     }
@@ -81,6 +95,14 @@ public class CustomerRegister extends HttpServlet {
         service.Database port = service.getDatabasePort();
 
         return port.addCustomer(username, password, email, phone, reported);
+    }
+
+    private java.util.List<service.Clientinfo> getclients() {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        service = new Database_Service();
+        service.Database port = service.getDatabasePort();
+        return port.getclients();
     }
 
 }
