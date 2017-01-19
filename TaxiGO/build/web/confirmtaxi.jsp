@@ -49,9 +49,10 @@
                     <td><%=taxi.getWeekendfee()%></td>
                     <td><%=taxi.getRating()%></td>
                     <td> <%=priceArr.get(index)%> </td>
-                    <td><input type="checkbox" name="chosen" value= "<%=taxi.getOperator()%>"/> </td>
+                    <td><input type="checkbox" name="chosen"value= "<%=taxi.getOperator() + " " + priceArr.get(index) %>"> </td>
                 </tr>
                 <%
+                            
                             index = index + 1;
                             taxi = (Taxioperator) request.getAttribute("price" + index);
                         }
@@ -63,7 +64,7 @@
             <br>
             <input type='submit' name="click" value="Confirm Booking Plan" style = "height:30px; width:70px; font-size: 16px"/>
             <input type="text" name="date" placeholder="YYYY-MM-DD"/>
-            <input type="text" name="time" placeholder="HH:MM:SS"/>
+            <input type="text" name="time" placeholder="HH:MM"/>
         </form>
     </body>
 </html>

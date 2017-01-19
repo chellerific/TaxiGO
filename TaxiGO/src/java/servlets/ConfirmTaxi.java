@@ -29,6 +29,7 @@ import service.Bookings;
 import service.Clientinfo;
 import service.Database_Service;
 import service.Taxioperator;
+import taxigoresource.CalculatePriceEJB;
 import taxigoresource.EmailSenderEJB;
 
 /**
@@ -37,6 +38,8 @@ import taxigoresource.EmailSenderEJB;
  */
 @WebServlet(name = "ConfirmTaxi", urlPatterns = {"/ConfirmTaxi"})
 public class ConfirmTaxi extends HttpServlet {
+    @EJB
+    private CalculatePriceEJB calculatePriceEJB;
 
     @EJB
     private EmailSenderEJB emailSenderEJB;
@@ -75,14 +78,21 @@ public class ConfirmTaxi extends HttpServlet {
             String booker = (String) request.getSession().getAttribute("booker");
             if (booker.equals("guest")) {
                 String chosen = request.getParameter("chosen");
+                String [] temp = chosen.split(" ");
+                chosen = temp[0];
+                totalPrice = Double.parseDouble(temp[1]);
+                
                 System.out.println("Taxi Operator: " + chosen);
                 String date = request.getParameter("date");
                 String time = request.getParameter("time");
+                
                 String booking = addBooking(chosen, "guest", origin, destination, totalPrice, date, time);
                 System.out.println("Origin: " + origin);
                 System.out.println("Destination: " + destination);
                 System.out.println("Booked by: " + booker);
                 System.out.println("Booking saved: " + booking);
+                System.out.println("Date: " + date);
+                System.out.println("Time: " + time);
 
                 request.getSession().setAttribute("origin", origin);
                 request.getSession().setAttribute("dest", destination);
@@ -93,6 +103,10 @@ public class ConfirmTaxi extends HttpServlet {
             } else {
                 String chosen = request.getParameter("chosen");
                 String customer = (String) request.getSession().getAttribute("booker");
+                String [] temp = chosen.split(" ");
+                chosen = temp[0];
+                totalPrice = Double.parseDouble(temp[1]);
+                
                 System.out.println("Taxi Operator: " + chosen);
                 String date = request.getParameter("date");
                 String time = request.getParameter("time");
@@ -101,32 +115,23 @@ public class ConfirmTaxi extends HttpServlet {
                 System.out.println("Destination: " + destination);
                 System.out.println("Booked by: " + booker);
                 System.out.println("Booking saved: " + booking);
+                System.out.println("Date: " + date);
+                System.out.println("Time: " + time);
+                System.out.println("Price: " + totalPrice);
                 sendConfirmEmail(customer, chosen, origin, destination, totalPrice);
                 request.getSession().removeAttribute("originStr");
                 request.getSession().removeAttribute("destStr");
                 request.getRequestDispatcher("receipt.jsp").forward(request, response);
             }
         } else {
-
+            
             String parsedDist = parseDist(tempDist);
-            System.out.println(parsedDist);
             distance = Double.parseDouble(parsedDist);
-            System.out.println(distance);
-            double baseRate;
-            double pricePerKm;
-
+            
             ArrayList<Double> priceArr = new ArrayList<>();
 
             for (int i = 0; i < size; i++) {
-                baseRate = prices.get(i).getBaserate();
-                System.out.println("Base rate: " + baseRate);
-                pricePerKm = prices.get(i).getPriceperkm();
-                System.out.println("Price / km: " + pricePerKm);
-                totalPrice
-                        = Double.parseDouble(new DecimalFormat("##.##").format(baseRate
-                                        + (pricePerKm * distance)).replace(",", "."));
-                priceArr.add(totalPrice);
-                System.out.println("Total Price: " + totalPrice);
+                priceArr.add(calculatePriceEJB.calculatePrice(prices.get(i), distance));
             }
             request.setAttribute("priceArr", priceArr);
             rd.forward(request, response);

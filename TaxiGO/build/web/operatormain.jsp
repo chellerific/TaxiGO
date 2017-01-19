@@ -29,7 +29,8 @@
                 <td>Origin</td>
                 <td>Destination</td>
                 <td>Price</td>
-                <td>Booking ID</td>
+                <td>Date</td>
+                <td>Time</td>
                 <td>Report</td>
                 <td>Reported during this session</td>
             </tr>
@@ -47,7 +48,8 @@
             <td><%=booking.getOrigin() %></td>
             <td><%=booking.getDestination() %></td>
             <td><%=booking.getPrice()%></td>
-            <td><%=booking.getBookingid() %></td>
+            <td><%=booking.getDate() %></td>
+            <td><%=booking.getTime() %></td>
             <td><input type="checkbox" name="chosen"value= "<%=booking.getCustomer()%>" </td>
             <td><%=request.getSession().getAttribute("reported")%></td>
             </tr>
