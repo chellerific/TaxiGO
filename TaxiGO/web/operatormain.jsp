@@ -22,13 +22,13 @@
          <center>
              <h2><font face="Trebuchet MS"><b>Bookings Done in Your Company</b></h2>
         
-        <form method="POST" action="TaxiGoServlet">
+        <form method="POST" action="OperatorServlet">
             <table border="2">
             <tr>
                 <td>Customer</td>
                 <td>Origin</td>
                 <td>Destination</td>
-                <td>Price</td>
+                <td>Price (SEK)</td>
                 <td>Date</td>
                 <td>Time</td>
                 <td>Report</td>

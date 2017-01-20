@@ -18,7 +18,7 @@
         <br>
         <br>
     <center><h1><font face="Trebuchet MS">Welcome, Operator!</font></h1>
-        <form method="POST" action="TaxiGoServlet"> 
+        <form method="POST" action="OperatorServlet"> 
             <h2><font face="Trebuchet MS"><b>Please enter your username and password to log in: </b></h2><br>
             <b>Username: </b><br>
             <input type="text" name="username" required style="height:25px; width:300px; font-size: 18px"><br>

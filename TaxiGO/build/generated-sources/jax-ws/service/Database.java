@@ -66,6 +66,24 @@ public interface Database {
 
     /**
      * 
+     * @param username
+     * @param newpass
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "updatepasswordclient", targetNamespace = "http://service/", className = "service.Updatepasswordclient")
+    @ResponseWrapper(localName = "updatepasswordclientResponse", targetNamespace = "http://service/", className = "service.UpdatepasswordclientResponse")
+    @Action(input = "http://service/Database/updatepasswordclientRequest", output = "http://service/Database/updatepasswordclientResponse")
+    public String updatepasswordclient(
+        @WebParam(name = "username", targetNamespace = "")
+        String username,
+        @WebParam(name = "newpass", targetNamespace = "")
+        String newpass);
+
+    /**
+     * 
      * @return
      *     returns java.util.List<service.Admininfo>
      */

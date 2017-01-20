@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ import service.Bookings;
 import service.Clientinfo;
 import service.Database_Service;
 import service.Taxioperator;
+import taxigoresource.EmailSenderEJB;
 import taxigoresource.HashMD5;
 
 /**
@@ -27,6 +29,8 @@ import taxigoresource.HashMD5;
  */
 @WebServlet(name = "CustomerLogIn", urlPatterns = {"/CustomerLogIn"})
 public class CustomerLogIn extends HttpServlet {
+    @EJB
+    private EmailSenderEJB emailSenderEJB;
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl")
     private Database_Service service;
@@ -75,6 +79,28 @@ public class CustomerLogIn extends HttpServlet {
         } else if (clickBtn.equals("Register")) {
             request.getRequestDispatcher("customerregister.jsp").forward(request, response);
 
+        } else if (clickBtn.equals("Send")) {
+            String username = request.getParameter("username");
+            String email = request.getParameter("email");
+            boolean isMatch = false;
+            
+            for (int i = 0; i < customers.size(); i++) {
+                if (customers.get(i).getUsername().equalsIgnoreCase(username)){
+                    if (customers.get(i).getEmail().equalsIgnoreCase(email)) {
+                        isMatch = true;
+                    }
+                }
+            }
+            
+            if (isMatch) {
+                emailSenderEJB.sendEmail(email, "Change password", getEmail());
+                request.setAttribute("error", "An e-mail has been sent");
+                request.getRequestDispatcher("/customersendpassword.jsp").forward(request, response); 
+            } else {
+                request.setAttribute("error", "Username and/or email don't match the database.");
+                request.getRequestDispatcher("/customersendpassword.jsp").forward(request, response); 
+                
+            }
         }
     }
 
@@ -98,5 +124,12 @@ public class CustomerLogIn extends HttpServlet {
         service = new Database_Service();
         service.Database port = service.getDatabasePort();
         return port.getclients();
+    }
+    
+    private String getEmail () {
+        String message = "Hello! \n\n You can change your password by clicking on the link below: \n"
+                + "'http://localhost:8080/TaxiGO/customerchangepassword.jsp'";
+        
+        return message;
     }
 }

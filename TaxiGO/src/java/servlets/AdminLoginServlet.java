@@ -19,6 +19,7 @@ import service.Admininfo;
 import service.Clientinfo;
 import service.Database_Service;
 import service.Taxiinfo;
+import taxigoresource.HashMD5;
 
 /**
  *
@@ -61,7 +62,7 @@ public class AdminLoginServlet extends HttpServlet {
             request.getSession().setAttribute("reported", true);
         } else {
             username = request.getParameter("username");
-            password = request.getParameter("password");
+            password = HashMD5.md5(request.getParameter("password"));
             request.getSession().setAttribute("reported", false);
         }
         

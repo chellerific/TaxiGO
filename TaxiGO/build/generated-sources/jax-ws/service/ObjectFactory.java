@@ -24,31 +24,33 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Addoperator_QNAME = new QName("http://service/", "addoperator");
-    private final static QName _GetadmininfoResponse_QNAME = new QName("http://service/", "getadmininfoResponse");
     private final static QName _Getpriceinfoforoperator_QNAME = new QName("http://service/", "getpriceinfoforoperator");
-    private final static QName _GetbookingsResponse_QNAME = new QName("http://service/", "getbookingsResponse");
     private final static QName _AddCustomer_QNAME = new QName("http://service/", "addCustomer");
-    private final static QName _GetclientsResponse_QNAME = new QName("http://service/", "getclientsResponse");
     private final static QName _ReportuserResponse_QNAME = new QName("http://service/", "reportuserResponse");
-    private final static QName _RemoveuserResponse_QNAME = new QName("http://service/", "removeuserResponse");
-    private final static QName _Getadmininfo_QNAME = new QName("http://service/", "getadmininfo");
     private final static QName _AddBookingResponse_QNAME = new QName("http://service/", "addBookingResponse");
+    private final static QName _Getadmininfo_QNAME = new QName("http://service/", "getadmininfo");
     private final static QName _GetpriceinfoResponse_QNAME = new QName("http://service/", "getpriceinfoResponse");
     private final static QName _Getpriceinfo_QNAME = new QName("http://service/", "getpriceinfo");
+    private final static QName _GetOperatorsResponse_QNAME = new QName("http://service/", "getOperatorsResponse");
+    private final static QName _UpdatePriceResponse_QNAME = new QName("http://service/", "updatePriceResponse");
+    private final static QName _Reportuser_QNAME = new QName("http://service/", "reportuser");
+    private final static QName _Getbookings_QNAME = new QName("http://service/", "getbookings");
+    private final static QName _Addoperator_QNAME = new QName("http://service/", "addoperator");
+    private final static QName _UpdatepasswordclientResponse_QNAME = new QName("http://service/", "updatepasswordclientResponse");
+    private final static QName _GetadmininfoResponse_QNAME = new QName("http://service/", "getadmininfoResponse");
+    private final static QName _Updatepasswordclient_QNAME = new QName("http://service/", "updatepasswordclient");
+    private final static QName _GetbookingsResponse_QNAME = new QName("http://service/", "getbookingsResponse");
+    private final static QName _GetclientsResponse_QNAME = new QName("http://service/", "getclientsResponse");
+    private final static QName _RemoveuserResponse_QNAME = new QName("http://service/", "removeuserResponse");
     private final static QName _Getclients_QNAME = new QName("http://service/", "getclients");
     private final static QName _AddoperatorResponse_QNAME = new QName("http://service/", "addoperatorResponse");
     private final static QName _AddBooking_QNAME = new QName("http://service/", "addBooking");
-    private final static QName _AddoperatorloginResponse_QNAME = new QName("http://service/", "addoperatorloginResponse");
     private final static QName _UpdatePrice_QNAME = new QName("http://service/", "updatePrice");
+    private final static QName _AddoperatorloginResponse_QNAME = new QName("http://service/", "addoperatorloginResponse");
     private final static QName _Addoperatorlogin_QNAME = new QName("http://service/", "addoperatorlogin");
-    private final static QName _GetOperatorsResponse_QNAME = new QName("http://service/", "getOperatorsResponse");
     private final static QName _GetpriceinfoforoperatorResponse_QNAME = new QName("http://service/", "getpriceinfoforoperatorResponse");
     private final static QName _Removeuser_QNAME = new QName("http://service/", "removeuser");
     private final static QName _AddCustomerResponse_QNAME = new QName("http://service/", "addCustomerResponse");
-    private final static QName _UpdatePriceResponse_QNAME = new QName("http://service/", "updatePriceResponse");
-    private final static QName _Getbookings_QNAME = new QName("http://service/", "getbookings");
-    private final static QName _Reportuser_QNAME = new QName("http://service/", "reportuser");
     private final static QName _GetOperators_QNAME = new QName("http://service/", "getOperators");
 
     /**
@@ -251,11 +253,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Updatepasswordclient }
+     * 
+     */
+    public Updatepasswordclient createUpdatepasswordclient() {
+        return new Updatepasswordclient();
+    }
+
+    /**
      * Create an instance of {@link GetadmininfoResponse }
      * 
      */
     public GetadmininfoResponse createGetadmininfoResponse() {
         return new GetadmininfoResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdatepasswordclientResponse }
+     * 
+     */
+    public UpdatepasswordclientResponse createUpdatepasswordclientResponse() {
+        return new UpdatepasswordclientResponse();
     }
 
     /**
@@ -307,39 +325,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Addoperator }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service/", name = "addoperator")
-    public JAXBElement<Addoperator> createAddoperator(Addoperator value) {
-        return new JAXBElement<Addoperator>(_Addoperator_QNAME, Addoperator.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetadmininfoResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service/", name = "getadmininfoResponse")
-    public JAXBElement<GetadmininfoResponse> createGetadmininfoResponse(GetadmininfoResponse value) {
-        return new JAXBElement<GetadmininfoResponse>(_GetadmininfoResponse_QNAME, GetadmininfoResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Getpriceinfoforoperator }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://service/", name = "getpriceinfoforoperator")
     public JAXBElement<Getpriceinfoforoperator> createGetpriceinfoforoperator(Getpriceinfoforoperator value) {
         return new JAXBElement<Getpriceinfoforoperator>(_Getpriceinfoforoperator_QNAME, Getpriceinfoforoperator.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetbookingsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service/", name = "getbookingsResponse")
-    public JAXBElement<GetbookingsResponse> createGetbookingsResponse(GetbookingsResponse value) {
-        return new JAXBElement<GetbookingsResponse>(_GetbookingsResponse_QNAME, GetbookingsResponse.class, null, value);
     }
 
     /**
@@ -352,15 +343,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetclientsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service/", name = "getclientsResponse")
-    public JAXBElement<GetclientsResponse> createGetclientsResponse(GetclientsResponse value) {
-        return new JAXBElement<GetclientsResponse>(_GetclientsResponse_QNAME, GetclientsResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ReportuserResponse }{@code >}}
      * 
      */
@@ -370,12 +352,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RemoveuserResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddBookingResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service/", name = "removeuserResponse")
-    public JAXBElement<RemoveuserResponse> createRemoveuserResponse(RemoveuserResponse value) {
-        return new JAXBElement<RemoveuserResponse>(_RemoveuserResponse_QNAME, RemoveuserResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service/", name = "addBookingResponse")
+    public JAXBElement<AddBookingResponse> createAddBookingResponse(AddBookingResponse value) {
+        return new JAXBElement<AddBookingResponse>(_AddBookingResponse_QNAME, AddBookingResponse.class, null, value);
     }
 
     /**
@@ -385,15 +367,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service/", name = "getadmininfo")
     public JAXBElement<Getadmininfo> createGetadmininfo(Getadmininfo value) {
         return new JAXBElement<Getadmininfo>(_Getadmininfo_QNAME, Getadmininfo.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddBookingResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service/", name = "addBookingResponse")
-    public JAXBElement<AddBookingResponse> createAddBookingResponse(AddBookingResponse value) {
-        return new JAXBElement<AddBookingResponse>(_AddBookingResponse_QNAME, AddBookingResponse.class, null, value);
     }
 
     /**
@@ -412,6 +385,105 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service/", name = "getpriceinfo")
     public JAXBElement<Getpriceinfo> createGetpriceinfo(Getpriceinfo value) {
         return new JAXBElement<Getpriceinfo>(_Getpriceinfo_QNAME, Getpriceinfo.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetOperatorsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "getOperatorsResponse")
+    public JAXBElement<GetOperatorsResponse> createGetOperatorsResponse(GetOperatorsResponse value) {
+        return new JAXBElement<GetOperatorsResponse>(_GetOperatorsResponse_QNAME, GetOperatorsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdatePriceResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "updatePriceResponse")
+    public JAXBElement<UpdatePriceResponse> createUpdatePriceResponse(UpdatePriceResponse value) {
+        return new JAXBElement<UpdatePriceResponse>(_UpdatePriceResponse_QNAME, UpdatePriceResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Reportuser }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "reportuser")
+    public JAXBElement<Reportuser> createReportuser(Reportuser value) {
+        return new JAXBElement<Reportuser>(_Reportuser_QNAME, Reportuser.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Getbookings }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "getbookings")
+    public JAXBElement<Getbookings> createGetbookings(Getbookings value) {
+        return new JAXBElement<Getbookings>(_Getbookings_QNAME, Getbookings.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Addoperator }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "addoperator")
+    public JAXBElement<Addoperator> createAddoperator(Addoperator value) {
+        return new JAXBElement<Addoperator>(_Addoperator_QNAME, Addoperator.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdatepasswordclientResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "updatepasswordclientResponse")
+    public JAXBElement<UpdatepasswordclientResponse> createUpdatepasswordclientResponse(UpdatepasswordclientResponse value) {
+        return new JAXBElement<UpdatepasswordclientResponse>(_UpdatepasswordclientResponse_QNAME, UpdatepasswordclientResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetadmininfoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "getadmininfoResponse")
+    public JAXBElement<GetadmininfoResponse> createGetadmininfoResponse(GetadmininfoResponse value) {
+        return new JAXBElement<GetadmininfoResponse>(_GetadmininfoResponse_QNAME, GetadmininfoResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Updatepasswordclient }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "updatepasswordclient")
+    public JAXBElement<Updatepasswordclient> createUpdatepasswordclient(Updatepasswordclient value) {
+        return new JAXBElement<Updatepasswordclient>(_Updatepasswordclient_QNAME, Updatepasswordclient.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetbookingsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "getbookingsResponse")
+    public JAXBElement<GetbookingsResponse> createGetbookingsResponse(GetbookingsResponse value) {
+        return new JAXBElement<GetbookingsResponse>(_GetbookingsResponse_QNAME, GetbookingsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetclientsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "getclientsResponse")
+    public JAXBElement<GetclientsResponse> createGetclientsResponse(GetclientsResponse value) {
+        return new JAXBElement<GetclientsResponse>(_GetclientsResponse_QNAME, GetclientsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RemoveuserResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "removeuserResponse")
+    public JAXBElement<RemoveuserResponse> createRemoveuserResponse(RemoveuserResponse value) {
+        return new JAXBElement<RemoveuserResponse>(_RemoveuserResponse_QNAME, RemoveuserResponse.class, null, value);
     }
 
     /**
@@ -442,15 +514,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddoperatorloginResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service/", name = "addoperatorloginResponse")
-    public JAXBElement<AddoperatorloginResponse> createAddoperatorloginResponse(AddoperatorloginResponse value) {
-        return new JAXBElement<AddoperatorloginResponse>(_AddoperatorloginResponse_QNAME, AddoperatorloginResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link UpdatePrice }{@code >}}
      * 
      */
@@ -460,21 +523,21 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddoperatorloginResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service/", name = "addoperatorloginResponse")
+    public JAXBElement<AddoperatorloginResponse> createAddoperatorloginResponse(AddoperatorloginResponse value) {
+        return new JAXBElement<AddoperatorloginResponse>(_AddoperatorloginResponse_QNAME, AddoperatorloginResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Addoperatorlogin }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://service/", name = "addoperatorlogin")
     public JAXBElement<Addoperatorlogin> createAddoperatorlogin(Addoperatorlogin value) {
         return new JAXBElement<Addoperatorlogin>(_Addoperatorlogin_QNAME, Addoperatorlogin.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetOperatorsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service/", name = "getOperatorsResponse")
-    public JAXBElement<GetOperatorsResponse> createGetOperatorsResponse(GetOperatorsResponse value) {
-        return new JAXBElement<GetOperatorsResponse>(_GetOperatorsResponse_QNAME, GetOperatorsResponse.class, null, value);
     }
 
     /**
@@ -502,33 +565,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service/", name = "addCustomerResponse")
     public JAXBElement<AddCustomerResponse> createAddCustomerResponse(AddCustomerResponse value) {
         return new JAXBElement<AddCustomerResponse>(_AddCustomerResponse_QNAME, AddCustomerResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UpdatePriceResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service/", name = "updatePriceResponse")
-    public JAXBElement<UpdatePriceResponse> createUpdatePriceResponse(UpdatePriceResponse value) {
-        return new JAXBElement<UpdatePriceResponse>(_UpdatePriceResponse_QNAME, UpdatePriceResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Getbookings }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service/", name = "getbookings")
-    public JAXBElement<Getbookings> createGetbookings(Getbookings value) {
-        return new JAXBElement<Getbookings>(_Getbookings_QNAME, Getbookings.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Reportuser }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service/", name = "reportuser")
-    public JAXBElement<Reportuser> createReportuser(Reportuser value) {
-        return new JAXBElement<Reportuser>(_Reportuser_QNAME, Reportuser.class, null, value);
     }
 
     /**

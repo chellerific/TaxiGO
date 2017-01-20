@@ -33,6 +33,9 @@
             <b> <%=err%> </b></form>
         <form action="CustomerLogIn" method="GET">
             <input type='submit' name="click" value="Register" style = "height:30px; width:100px; font-size: 16px"/>
+        </form>
+        <form action="customersendpassword.jsp" >
+            <input type='submit' name="click" value="Forgot pass" style = "height:30px; width:100px; font-size: 16px"/>
         </form></center>
 </body>
 </html>

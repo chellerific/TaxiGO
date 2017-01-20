@@ -52,6 +52,10 @@
 
 <xs:element name="updatePriceResponse" type="tns:updatePriceResponse"/>
 
+<xs:element name="updatepasswordclient" type="tns:updatepasswordclient"/>
+
+<xs:element name="updatepasswordclientResponse" type="tns:updatepasswordclientResponse"/>
+
 <xs:complexType name="addoperatorlogin">
 <xs:sequence>
 <xs:element name="operator" type="xs:string" minOccurs="0"/>
@@ -146,6 +150,19 @@
 </xs:complexType>
 
 <xs:complexType name="removeuserResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updatepasswordclient">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="newpass" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updatepasswordclientResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>

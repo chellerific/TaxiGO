@@ -16,6 +16,12 @@
 <message name="getpriceinfoforoperatorResponse">
 <part name="parameters" element="tns:getpriceinfoforoperatorResponse"/>
 </message>
+<message name="updatepasswordclient">
+<part name="parameters" element="tns:updatepasswordclient"/>
+</message>
+<message name="updatepasswordclientResponse">
+<part name="parameters" element="tns:updatepasswordclientResponse"/>
+</message>
 <message name="getadmininfo">
 <part name="parameters" element="tns:getadmininfo"/>
 </message>
@@ -91,6 +97,10 @@
 <input wsam:Action="http://service/Database/getpriceinfoforoperatorRequest" message="tns:getpriceinfoforoperator"/>
 <output wsam:Action="http://service/Database/getpriceinfoforoperatorResponse" message="tns:getpriceinfoforoperatorResponse"/>
 </operation>
+<operation name="updatepasswordclient">
+<input wsam:Action="http://service/Database/updatepasswordclientRequest" message="tns:updatepasswordclient"/>
+<output wsam:Action="http://service/Database/updatepasswordclientResponse" message="tns:updatepasswordclientResponse"/>
+</operation>
 <operation name="getadmininfo">
 <input wsam:Action="http://service/Database/getadmininfoRequest" message="tns:getadmininfo"/>
 <output wsam:Action="http://service/Database/getadmininfoResponse" message="tns:getadmininfoResponse"/>
@@ -148,6 +158,15 @@
 </output>
 </operation>
 <operation name="getpriceinfoforoperator">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="updatepasswordclient">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
