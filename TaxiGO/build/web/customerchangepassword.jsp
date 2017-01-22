@@ -2,6 +2,8 @@
     Document   : CustomerChangePassword
     Created on : Jan 20, 2017, 3:00:38 PM
     Author     : Sara
+
+    The page where a customer can change their password. This page is sent to user via e-mail.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

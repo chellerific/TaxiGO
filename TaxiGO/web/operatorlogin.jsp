@@ -2,6 +2,8 @@
     Document   : start
     Created on : Jan 3, 2017, 3:44:42 PM
     Author     : Sara
+
+    Operator login page. Shows an error message if username or password is incorrect. 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

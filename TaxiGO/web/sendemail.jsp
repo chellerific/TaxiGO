@@ -2,6 +2,8 @@
     Document   : sendemail
     Created on : Jan 14, 2017, 12:05:09 PM
     Author     : Sara
+
+    Text field for subject and text area for e-mail so admin can send e-mails to all registered customers. 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

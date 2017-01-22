@@ -2,6 +2,9 @@
     Document   : newjsp
     Created on : Jan 11, 2017, 5:23:41 PM
     Author     : Sara
+
+    This page shows information about the registered users and taxi operators to the admin.
+    Also includes buttons to add operators and to send email to all customers. 
 --%>
 
 <%@page import="service.Clientinfo"%>

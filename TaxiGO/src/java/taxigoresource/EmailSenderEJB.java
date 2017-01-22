@@ -27,6 +27,7 @@ public class EmailSenderEJB {
     
     
     public void setRecipientsAndSendEmail(List <String> addresses, String title, String message) {
+        //This method is called when e-mail will be sent to a list of clients. 
         List <String> sendTo = addresses;
         
         int size = sendTo.size();
@@ -38,7 +39,8 @@ public class EmailSenderEJB {
     
     public void sendEmail(String sendTo, String title, String message) {
         try {
-            //This properties are valid for gmail.  You need to check for other mail providers/servers/agents.
+            //This method is borrowed from the course page on itslearning. Authenticates an address and sends email
+            //Comments below are from the version on itslearning. 
             Properties props = new Properties();
             props.setProperty("mail.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.port", "587");

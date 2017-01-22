@@ -50,7 +50,8 @@ public class AdminLoginServlet extends HttpServlet {
         String password = "";      
         String function = (String) request.getParameter("function");
         
-        if (function.equals("Remove")) {
+        
+        if (function.equals("Remove")) { //If the operator chooses to remove a customer that has been reported. 
             String name = request.getParameter("chosen");
             System.out.println("Checkbox value = " + name);
             String res = removeuser(name);
@@ -60,12 +61,13 @@ public class AdminLoginServlet extends HttpServlet {
             System.out.println("User after removing: " + username);
             System.out.println("Pass after removing: " + password);
             request.getSession().setAttribute("reported", true);
-        } else {
+        } else { //If its log in
             username = request.getParameter("username");
             password = HashMD5.md5(request.getParameter("password"));
             request.getSession().setAttribute("reported", false);
         }
         
+        //Gets a list of admins to see that the username and password are correct. 
         List<Admininfo> admins = getadmininfo();
         int s = admins.size();
         String tempUser = null;
@@ -81,7 +83,7 @@ public class AdminLoginServlet extends HttpServlet {
             }
 
         }
-        if (found) {
+        if (found) { //If username and password are correct, the admin will be logged in.
             request.getSession().setAttribute("username", username);
             request.getSession().setAttribute("password", password);
             sc = getServletContext();
@@ -89,6 +91,7 @@ public class AdminLoginServlet extends HttpServlet {
             List <Clientinfo> clients = getclients();
             List <Taxiinfo> infos = getOperators();
             
+            //Gets taxi operators and clients to send to next jsp for showing. 
             int size = clients.size();
             for (int i = 0; i < size; i++) {
                 request.setAttribute("client" + i, clients.get(i));
@@ -103,7 +106,7 @@ public class AdminLoginServlet extends HttpServlet {
             request.getSession().setAttribute("password", password);
 
             rd.forward(request, response);
-        } else {
+        } else { //If username or password are wrong. 
             sc = getServletContext();
             rd = sc.getRequestDispatcher("/adminlogin.jsp");
             request.setAttribute("error", "Username and password don't match database!");

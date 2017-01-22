@@ -42,6 +42,7 @@ public class AdminSendEmailServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Gets all clients, and sends email to them via EJB. 
         String title = request.getParameter("title");
         String message = request.getParameter("message");
         List <Clientinfo> clients = getclients();

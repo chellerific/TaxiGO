@@ -2,6 +2,8 @@
     Document   : operatorupdate
     Created on : Jan 5, 2017, 6:13:58 PM
     Author     : Sara
+
+    The operator can change their prices. 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

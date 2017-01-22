@@ -2,6 +2,8 @@
     Document   : adminaddoperator
     Created on : Jan 11, 2017, 5:43:37 PM
     Author     : Sara
+
+    This page lets the admin to add new taxi operators in the service. 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

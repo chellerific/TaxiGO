@@ -41,6 +41,8 @@ public class AdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //This method will add a new operator, with info being sent to two different tables: 
+        //Taxiinfo and Taxioperator
         List<Taxiinfo> taxis = getOperators();
         boolean isFree = true;
         String name = request.getParameter("number1");
@@ -54,7 +56,8 @@ public class AdminServlet extends HttpServlet {
         String password = HashMD5.md5(request.getParameter("number8"));
 
         String temp;
-
+        
+        //Loop that checks that the operator doesn't already exist
         for (int i = 0; i < taxis.size(); i++) {
             temp = taxis.get(i).getUsername();
             if (temp.equalsIgnoreCase(name)) {
@@ -62,7 +65,7 @@ public class AdminServlet extends HttpServlet {
             }
         }
 
-        if (isFree) {
+        if (isFree) { //If username was not taken, add values to database
             double base = 0;
             double perkm = 0;
             double wknd = 0;
@@ -86,7 +89,7 @@ public class AdminServlet extends HttpServlet {
             RequestDispatcher rd = sc.getRequestDispatcher("/updated.jsp");
 
             rd.forward(request, response);
-        } else {
+        } else { //If username was already taken. 
             request.setAttribute("error", "Taxi operator already exists");
             ServletContext sc = getServletContext();
             RequestDispatcher rd = sc.getRequestDispatcher("/adminaddoperator.jsp");

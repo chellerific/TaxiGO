@@ -45,19 +45,20 @@ public class ChangePasswordServlet extends HttpServlet {
         String password = HashMD5.md5(request.getParameter("password"));
         boolean exists = false;
         
+        //Checks if user exists
         List <Clientinfo> clients = getclients();
         for (int i = 0; i <clients.size(); i++) {
             if (clients.get(i).getUsername().equalsIgnoreCase(username)) {
                 exists = true;
             }
         }
-        if (exists) {
+        if (exists) { //If they exist, update password
             String update = updatepasswordclient(username, password);
             System.out.println(update);
             ServletContext sc = getServletContext();
             RequestDispatcher rd = sc.getRequestDispatcher("/chooseuser.jsp"); 
             rd.forward(request, response);
-        } else {
+        } else { //Show error message
             request.setAttribute("error", "User doesn't exist!");
             ServletContext sc = getServletContext();
             RequestDispatcher rd = sc.getRequestDispatcher("/customerchangepassword.jsp"); 

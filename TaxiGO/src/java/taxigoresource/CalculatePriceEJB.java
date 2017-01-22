@@ -16,6 +16,7 @@ import service.Taxioperator;
 @Stateless
 public class CalculatePriceEJB {
     
+    //Method that calculates price for a trip and makes sure the format is correct
     public double calculatePrice(Taxioperator taxi, double distance) {
         double baseRate = taxi.getBaserate();
         double pricePerKm = taxi.getPriceperkm();

@@ -39,6 +39,7 @@ public class OperatorUpdatePricesServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //Gets values from textfields, and updates price info. 
         String baseRate = request.getParameter("number1");
         String pricePerKm = request.getParameter("number2");
         String weekendFee = request.getParameter("number3");

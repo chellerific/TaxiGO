@@ -2,6 +2,9 @@
     Document   : customersendpassword
     Created on : Jan 20, 2017, 3:25:32 PM
     Author     : Sara
+
+    This is the form user opens if they have forgotten their password. They will write down username and email,
+    and if they match database, an e-mail will be sent. 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

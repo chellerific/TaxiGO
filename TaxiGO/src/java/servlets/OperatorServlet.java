@@ -51,7 +51,7 @@ public class OperatorServlet extends HttpServlet {
         boolean found = false;
         String function = (String) request.getParameter("function");
 
-        if (function.equals("Report")) {
+        if (function.equals("Report")) { //If operator reports a customer
             String name = request.getParameter("chosen");
             System.out.println("Checkbox value = " + name);
             String res = reportuser(name);
@@ -61,7 +61,7 @@ public class OperatorServlet extends HttpServlet {
             System.out.println("User after reporting: " + username);
             System.out.println("Pass after reporting: " + password);
             request.getSession().setAttribute("reported", true);
-        } else {
+        } else { //If they have just logged in
             username = request.getParameter("username");
             password = HashMD5.md5(request.getParameter("password"));
             request.getSession().setAttribute("reported", false);
@@ -73,6 +73,7 @@ public class OperatorServlet extends HttpServlet {
         String tempPass = null;
         found = false;
 
+        //Checks that login is correct
         for (int i = 0; i < s; i++) {
             tempUser = taxis.get(i).getUsername();
             tempPass = taxis.get(i).getPassword();
@@ -82,7 +83,7 @@ public class OperatorServlet extends HttpServlet {
             }
 
         }
-        if (found) {
+        if (found) { //Get bookings and price info that will be sent to next jsp to show to user
             sc = getServletContext();
             rd = sc.getRequestDispatcher("/operatormain.jsp");
             List<Bookings> bookings = getbookings(username, "operator");
@@ -99,7 +100,7 @@ public class OperatorServlet extends HttpServlet {
             request.getSession().setAttribute("password", password);
 
             rd.forward(request, response);
-        } else {
+        } else { //Wrong username or password
             sc = getServletContext();
             rd = sc.getRequestDispatcher("/operatorlogin.jsp");
             request.setAttribute("error", "Username and password don't match database!");

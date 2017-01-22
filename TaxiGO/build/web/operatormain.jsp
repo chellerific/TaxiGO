@@ -2,6 +2,8 @@
     Document   : operatormain
     Created on : Jan 5, 2017, 6:13:24 PM
     Author     : Sara
+
+    Operators can see their bookings and their price info. The can also change the rates. 
 --%>
 
 <%@page import="service.Taxioperator"%>

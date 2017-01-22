@@ -2,6 +2,8 @@
     Document   : adminlogin
     Created on : Jan 16, 2017, 2:40:31 PM
     Author     : Sara
+
+    Login page for the admin. If the username or password is wrong, an error message is shown. 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
