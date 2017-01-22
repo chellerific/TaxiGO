@@ -2,6 +2,8 @@
     Document   : customerlogin
     Created on : Jan 14, 2017, 11:21:46 PM
     Author     : Chelsi
+
+    Log In and register page for the registered customer.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

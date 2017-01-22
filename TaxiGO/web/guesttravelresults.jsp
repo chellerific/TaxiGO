@@ -2,6 +2,8 @@
     Document   : results
     Created on : Jan 14, 2017, 5:59:12 PM
     Author     : Chelsi
+
+    Page for calculating and confirming the travel specifications for guest.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

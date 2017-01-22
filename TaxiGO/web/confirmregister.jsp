@@ -2,6 +2,8 @@
     Document   : confirmregister
     Created on : Jan 16, 2017, 1:48:10 PM
     Author     : Chelsi
+
+    Confirmation page for when a customer has successfully registered for our services
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

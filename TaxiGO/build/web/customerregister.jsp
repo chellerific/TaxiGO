@@ -2,6 +2,8 @@
     Document   : customerregister
     Created on : Jan 15, 2017, 7:54:58 PM
     Author     : Chelsi
+
+    Registering page for a customer.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

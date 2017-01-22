@@ -2,6 +2,8 @@
     Document   : customermain
     Created on : Jan 14, 2017, 11:21:55 PM
     Author     : Chelsi
+
+    The main homepage for a registered customer.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

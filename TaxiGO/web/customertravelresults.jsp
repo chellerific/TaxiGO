@@ -2,6 +2,9 @@
     Document   : customertravelresults
     Created on : Jan 17, 2017, 8:49:51 PM
     Author     : Chelsi
+
+    Page for calculating and confirming the travel specifications for customer.
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

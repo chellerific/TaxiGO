@@ -42,7 +42,7 @@ public class CustomerRegister extends HttpServlet {
         boolean isFree = true;
 
         String username = request.getParameter("uname");
-        String password = HashMD5.md5(request.getParameter("pass"));
+        String password = HashMD5.md5(request.getParameter("pass")); //encryption
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String temp = "";

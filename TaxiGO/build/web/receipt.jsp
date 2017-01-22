@@ -2,6 +2,8 @@
     Document   : guestreceipt
     Created on : Jan 17, 2017, 10:22:26 PM
     Author     : Chelsi
+
+    A confirmation receipt page that changes depending if the booker is a guest or a registered customer.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

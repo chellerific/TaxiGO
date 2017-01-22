@@ -2,6 +2,8 @@
     Document   : chooseuser
     Created on : Jan 9, 2017, 5:38:40 PM
     Author     : Chelsi
+
+    The homepage for Taxi GO. They can choose how to log in depending on their role.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

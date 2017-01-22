@@ -27,6 +27,9 @@ public class GuestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        /*retrieves the origin and destinations specified by the user and sets them to be
+        retievable throughout the session*/
 
         origin = request.getParameter("origin");
         dest = request.getParameter("dest");

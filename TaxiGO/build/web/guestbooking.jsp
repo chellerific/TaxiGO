@@ -2,6 +2,8 @@
     Document   : guestbooking
     Created on : Jan 9, 2017, 7:51:59 PM
     Author     : Chelsi
+
+    The homepage for Guest where they can immediately choose a travel plan.
 --%>
 
 <%@ page language="java" contentType="text/html; charset=EUC-KR"

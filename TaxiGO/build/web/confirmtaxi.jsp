@@ -2,6 +2,8 @@
     Document   : taxioperatorlist
     Created on : Jan 14, 2017, 7:18:50 PM
     Author     : Chelsi
+    
+    Booking page for guest and registered customer.
 --%>
 
 <%@page import="java.util.ArrayList"%>

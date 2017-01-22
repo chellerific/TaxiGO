@@ -51,7 +51,7 @@ public class CustomerLogIn extends HttpServlet {
         if (clickBtn.equals("Log In")) {
             String username = request.getParameter("uname");
             String password = HashMD5.md5(request.getParameter("pass"));
-            
+            //Compares the username and password if they do exist in the database
             for (int i = 0; i < customers.size(); i++) {
                 uname = customers.get(i).getUsername();
                 pass = customers.get(i).getPassword();
@@ -65,6 +65,7 @@ public class CustomerLogIn extends HttpServlet {
                 }
             }
             if (found) {
+                //If the user is found, lead them to their homepage
                 request.getSession().setAttribute("uname", username);
                 request.getSession().setAttribute("pass", password);
                 request.getSession().setAttribute("booker", username);
@@ -127,6 +128,7 @@ public class CustomerLogIn extends HttpServlet {
     }
     
     private String getEmail () {
+        //For retrieving lost passwords
         String message = "Hello! \n\n You can change your password by clicking on the link below: \n"
                 + "'http://localhost:8080/TaxiGO/customerchangepassword.jsp'";
         

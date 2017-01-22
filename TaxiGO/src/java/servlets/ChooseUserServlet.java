@@ -25,14 +25,6 @@ public class ChooseUserServlet extends HttpServlet {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/TaxiGOServerNew/Database.wsdl")
     private Database_Service service;
 
-//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        ServletContext sc = getServletContext();
-//        RequestDispatcher rd = sc.getRequestDispatcher("/operatormain.jsp");
-//
-//        rd.forward(request, response);
-//
-//    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -49,10 +41,11 @@ public class ChooseUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //The logic that checks which type of user the client wants to log in as
 
         String clickBtn = request.getParameter("click");
         if (clickBtn.equals("Guest")) {
-            request.getSession().setAttribute("booker", "guest");
+            request.getSession().setAttribute("booker", "guest"); //Sets the current session as a guest
             request.getRequestDispatcher("guestbooking.jsp").forward(request, response);
 
         } else if (clickBtn.equals("Customer")) {

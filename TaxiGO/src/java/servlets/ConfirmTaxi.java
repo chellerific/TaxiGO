@@ -57,21 +57,25 @@ public class ConfirmTaxi extends HttpServlet {
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/confirmtaxi.jsp");
         String clickBtn = (String) request.getParameter("click");
-        origin = (String) request.getSession().getAttribute("originStr");
-        destination = (String) request.getSession().getAttribute("destStr");
+        origin = (String) request.getSession().getAttribute("originStr"); //retrieves the session's specified origin
+        destination = (String) request.getSession().getAttribute("destStr"); //retrieves the sessions's specified destination
         String tempDist = request.getParameter("distance");
-
+        
+        //Sets up the list of taxi companies and prices which is retrieved by the confirmtaxi JSP
         List<Taxioperator> prices = getpriceinfo();
         int size = prices.size();
         for (int i = 0; i < size; i++) {
             request.setAttribute("price" + i, prices.get(i));
         }
-
+         
         if (clickBtn.equals("Confirm Booking Plan")) {
+            //Checks which type of booker is booking and wants to confirm a travel plan
             String booker = (String) request.getSession().getAttribute("booker");
 
             if (booker.equals("guest")) {
-                String chosen = request.getParameter("chosen");
+                
+                //Guest session
+                String chosen = request.getParameter("chosen"); //Chosen taxi company
                 String[] temp = chosen.split(" ");
                 chosen = temp[0];
                 totalPrice = Double.parseDouble(temp[1]);
@@ -87,6 +91,8 @@ public class ConfirmTaxi extends HttpServlet {
                 System.out.println("Booking saved: " + booking);
                 System.out.println("Date: " + date);
                 System.out.println("Time: " + time);
+                
+                //sets the specific variables to the current session which can be retrieved later in receipts
 
                 request.getSession().setAttribute("origin", origin);
                 request.getSession().setAttribute("dest", destination);
@@ -95,6 +101,8 @@ public class ConfirmTaxi extends HttpServlet {
                 request.getSession().setAttribute("booker", booker);
                 request.getRequestDispatcher("receipt.jsp").forward(request, response);
             } else {
+                
+                //Customer session
                 String chosen = request.getParameter("chosen");
                 String customer = (String) request.getSession().getAttribute("booker");
                 String[] temp = chosen.split(" ");
@@ -118,7 +126,7 @@ public class ConfirmTaxi extends HttpServlet {
                 request.getRequestDispatcher("receipt.jsp").forward(request, response);
             }
         } else {
-
+            //If the user hasn't chosen yet, calculate the prices for each taxi company and display it
             String parsedDist = parseDist(tempDist);
             distance = Double.parseDouble(parsedDist);
 
@@ -206,6 +214,7 @@ public class ConfirmTaxi extends HttpServlet {
 
     private void sendConfirmEmail(String username, String operator, String origin,
             String destination, double price) {
+        //Confirmation email sent to the registered customer immediately after booking
         List<Clientinfo> clients = getclients();
         String uname;
         String tempEmail;
